@@ -1,6 +1,7 @@
 version: '3.8'
 
 services:
+
   event-management-svc:
     build:
       context: ./event-management-svc
@@ -9,3 +10,49 @@ services:
       - "8080:8080"
     environment:
       - SPRING_PROFILES_ACTIVE=dev
+
+  event-svc:
+    build:
+      context: ./event-svc
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+
+  notification-svc:
+    build:
+      context: ./notification-svc
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+
+  payment-svc:
+    build:
+      context: ./payment-svc
+      dockerfile: Dockerfile
+    ports:
+      - "8083:8083"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+
+  ticket-svc:
+    build:
+      context: ./ticket-svc
+      dockerfile: Dockerfile
+    ports:
+      - "8084:8084"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+
+  user-svc:
+    build:
+      context: ./user-svc
+      dockerfile: Dockerfile
+    ports:
+      - "8085:8085"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+
