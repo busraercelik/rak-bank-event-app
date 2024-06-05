@@ -4,4 +4,4 @@
     1. Run the app in container 
         - Mac/Linux `sh start.sh`
         - Windows `./start.cmd`
-    2. visit http://localhost:8080/swagger-ui
+    2. visit http://localhost:8080/swagger-ui/index.html

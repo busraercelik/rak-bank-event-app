@@ -1,3 +1,5 @@
+docker-compose down --rmi all
+
 cd event-management-svc
 mvnw clean package
 cd ..
