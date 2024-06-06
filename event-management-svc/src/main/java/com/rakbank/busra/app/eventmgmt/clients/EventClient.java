@@ -1,7 +1,7 @@
 package com.rakbank.busra.app.eventmgmt.clients;
 
 import com.rakbank.busra.app.eventmgmt.config.AppConfig;
-import com.rakbank.busra.app.eventmgmt.dtos.EventDTO;
+import com.rakbank.busra.app.eventmgmt.dtos.EventCreateRequestDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
@@ -17,28 +17,28 @@ public class EventClient {
     private final AppConfig appConfig;
     private final RestClient restClient;
 
-    public EventDTO createEvent(EventDTO request) {
+    public EventCreateRequestDTO createEvent(EventCreateRequestDTO request) {
         return restClient.post()
                 .uri(appConfig.getUserServiceBaseUrl() + "/v1/event")
                 .contentType(APPLICATION_JSON)
                 .body(request)
                 .retrieve()
-                .toEntity(EventDTO.class)
+                .toEntity(EventCreateRequestDTO.class)
                 .getBody();
     }
 
-    public EventDTO getById(String id) {
+    public EventCreateRequestDTO getById(String id) {
         return restClient.get()
                 .uri(appConfig.getUserServiceBaseUrl() + "/v1/event/{id}", id)
                 .retrieve()
-                .body(EventDTO.class);
+                .body(EventCreateRequestDTO.class);
     }
 
-    public List<EventDTO> search(String search) {
+    public List<EventCreateRequestDTO> search(String search) {
         return restClient.get()
                 .uri(appConfig.getUserServiceBaseUrl() + "/v1/event?search={search}", search)
                 .retrieve()
-                .toEntity(new ParameterizedTypeReference<List<EventDTO>>() {})
+                .toEntity(new ParameterizedTypeReference<List<EventCreateRequestDTO>>() {})
                 .getBody();
 
     }

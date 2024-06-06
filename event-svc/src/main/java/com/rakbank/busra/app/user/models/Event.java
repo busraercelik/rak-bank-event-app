@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -18,6 +19,6 @@ public class Event {
     String name;
     String description;
     String host;
-    LocalDate dateFrom;
-    LocalDate dateTo;
+    LocalDateTime dateFrom;
+    LocalDateTime dateTo;
 }
