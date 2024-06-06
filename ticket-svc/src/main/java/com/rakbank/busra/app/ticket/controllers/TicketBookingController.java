@@ -1,13 +1,14 @@
 package com.rakbank.busra.app.ticket.controllers;
 
-import com.rakbank.busra.app.ticket.dtos.TicketSaleDTO;
+import com.rakbank.busra.app.ticket.common.dto.BaseAPIResponse;
+import com.rakbank.busra.app.ticket.dtos.TicketSaleRequestDTO;
+import com.rakbank.busra.app.ticket.dtos.TicketSaleResponseDTO;
+import com.rakbank.busra.app.ticket.models.TicketSale;
 import com.rakbank.busra.app.ticket.services.TicketBookingService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -17,13 +18,22 @@ class TicketBookingController {
     private TicketBookingService ticketBookingService;
 
     @PostMapping
-    TicketSaleDTO create(TicketSaleDTO dto) {
-        return ticketBookingService.book(dto);
+    BaseAPIResponse<TicketSaleResponseDTO> book(@Valid @RequestBody TicketSaleRequestDTO dto) {
+        var result = ticketBookingService.book(dto);
+        return new BaseAPIResponse<>("200",
+                String.format("Ticket booked successfully, referenceId : %s", result.getReferenceId()), result);
     }
 
-    @PutMapping
-    TicketSaleDTO cancel(String id) {
-        return ticketBookingService.cancel(id);
+    @GetMapping("/{referenceId}")
+    BaseAPIResponse<TicketSale> fetchTicketByReferenceId(@PathVariable("referenceId") String referenceId) {
+        var result = ticketBookingService.fetchTicketByReferenceId(referenceId);
+        return new BaseAPIResponse<>("200", "Ticket fetched successfully", result);
+    }
+
+    @PutMapping("/{referenceId}")
+    BaseAPIResponse<TicketSale> cancel(@PathVariable("referenceId") String referenceId) {
+        var result = ticketBookingService.cancel(referenceId);
+        return new BaseAPIResponse<>("200", "Ticket status updated to CANCELLED successfully", result);
     }
 
 }

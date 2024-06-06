@@ -19,7 +19,10 @@ public class TicketSale {
     Long userId;
     Long eventId;
     Long paymentId;
+
     BigDecimal amount;
     Currency currency;
     TicketStatus ticketStatus;
+
+    String referenceId;
 }

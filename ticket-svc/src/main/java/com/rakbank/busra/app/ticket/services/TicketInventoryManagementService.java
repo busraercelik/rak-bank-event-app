@@ -1,9 +1,7 @@
 package com.rakbank.busra.app.ticket.services;
 
-import com.rakbank.busra.app.ticket.common.exceptions.ApplicationException;
 import com.rakbank.busra.app.ticket.dtos.CreateTicketEventInventoryResultDTO;
 import com.rakbank.busra.app.ticket.dtos.EventTicketInventoryDTO;
-import com.rakbank.busra.app.ticket.errors.ErrorCode;
 import com.rakbank.busra.app.ticket.models.EventTicket;
 import com.rakbank.busra.app.ticket.models.EventTicketInventory;
 import com.rakbank.busra.app.ticket.models.TicketType;
@@ -16,7 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 
 @Slf4j
 @Service
@@ -31,8 +28,9 @@ public class TicketInventoryManagementService {
     public CreateTicketEventInventoryResultDTO createTicketEventInventory(EventTicketInventoryDTO dto) {
         var existingInventory = eventTicketInventoryRepository.findByEventId(dto.getEventId());
 
-        if(Objects.nonNull(existingInventory))
-            return new CreateTicketEventInventoryResultDTO(false, existingInventory);
+        if(existingInventory.isPresent()){
+            return new CreateTicketEventInventoryResultDTO(false, existingInventory.get());
+        }
 
         var eventTicketInventory = new EventTicketInventory();
         eventTicketInventory.setEventId(dto.getEventId());
@@ -50,17 +48,14 @@ public class TicketInventoryManagementService {
     }
 
     public EventTicketInventory getEventTicketInventoryByEventId(Long eventId){
-        return eventTicketInventoryRepository.findByEventId(eventId);
+        return eventTicketInventoryRepository.getByEventId(eventId);
     }
 
     private EventTicket createEventTicket(
             EventTicketInventory eventTicketInventory,
             EventTicketInventoryDTO.TicketBookingCapacity ticketBookingCapacity) {
         var ticketTypeName = ticketBookingCapacity.getTicketTypeName();
-        var ticketType = ticketTypeRepository.findByTicketTypeNameIgnoreCase(ticketTypeName)
-                .orElseThrow(()-> new ApplicationException(
-                        String.format("Ticket Type with name : %s not found", ticketTypeName),
-                        ErrorCode.TICKET_TYPE_NOT_FOUND));
+        var ticketType = ticketTypeRepository.getByTicketTypeNameIgnoreCase(ticketTypeName);
 
         var eventTicket = new EventTicket();
         eventTicket.setAvailableTickets(ticketBookingCapacity.getTotalTickets());

@@ -11,16 +11,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @RestController
 @AllArgsConstructor
-@RequestMapping("/v1/ticket")
+@RequestMapping("/v1/ticket/inventory")
 class TicketEventInventoryController {
     private final TicketInventoryManagementService ticketInventoryManagementService;
 
-    @PostMapping("/inventory")
+    @PostMapping
     BaseAPIResponse<CreateTicketEventInventoryResultDTO> create(@RequestBody EventTicketInventoryDTO dto) {
         var result = ticketInventoryManagementService.createTicketEventInventory(dto);
         var detail = result.isCreated()? "Event ticket inventory created successfully": "Event ticket inventory already exists";
