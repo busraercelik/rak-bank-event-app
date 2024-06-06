@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface EventRepository extends JpaRepository<Event, Long> {
 
-    @Query("SELECT e FROM Event e WHERE e.name LIKE %:text% OR e.description LIKE %:text%")
+    @Query("SELECT e FROM Event e WHERE e.name LIKE %:text% OR e.description LIKE %:text% ORDER BY e.dateFrom DESC")
     List<Event> searchText(@Param("text") String text);
 
 }

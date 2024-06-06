@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 public enum ErrorCode implements BaseErrorCode {
     INTERNAL_SERVER_ERROR("ERROR_GEN_500", 500),
     EVENT_NOT_FOUND("ERROR_EVENT_100", 404),
+    INVALID_DATE_TIME_FORMAT("ERROR_EVENT_200", 400),
     ;
 
     final String code;

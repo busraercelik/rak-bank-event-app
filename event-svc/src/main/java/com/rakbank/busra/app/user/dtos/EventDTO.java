@@ -1,16 +1,15 @@
 package com.rakbank.busra.app.user.dtos;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 
-import java.time.LocalDateTime;
-
+@Data
 public class EventDTO {
+    Long id;
+
     String name;
     String description;
     String host;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    LocalDateTime dateTo;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    LocalDateTime dateFrom;
+    String dateTo;
+    String dateFrom;
 }
