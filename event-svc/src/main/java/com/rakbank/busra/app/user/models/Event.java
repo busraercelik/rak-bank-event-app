@@ -6,19 +6,18 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
 @Entity
 public class Event {
-
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    int id;
+    Long id;
     String name;
     String description;
     String host;
     LocalDateTime dateFrom;
     LocalDateTime dateTo;
+    Long eventTicketInventoryId;
 }

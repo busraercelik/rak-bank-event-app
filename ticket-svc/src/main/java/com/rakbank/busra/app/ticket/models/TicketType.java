@@ -1,4 +1,4 @@
-package com.rakbank.busra.app.user.models;
+package com.rakbank.busra.app.ticket.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,10 +11,10 @@ import java.math.BigDecimal;
 @Data
 @Entity
 public class TicketType {
-
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    int id;
-    String name;
-    BigDecimal price;
+    Long id;
+    String ticketTypeName;
+    BigDecimal amount;
+    Currency currency;
 }
