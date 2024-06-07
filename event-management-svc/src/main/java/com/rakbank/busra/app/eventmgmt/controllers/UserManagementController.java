@@ -1,5 +1,6 @@
 package com.rakbank.busra.app.eventmgmt.controllers;
 
+import com.rakbank.busra.app.eventmgmt.common.dto.BaseAPIResponse;
 import com.rakbank.busra.app.eventmgmt.dtos.requests.UserDTO;
 import com.rakbank.busra.app.eventmgmt.services.UserBusinessService;
 import lombok.AllArgsConstructor;
@@ -15,12 +16,12 @@ class UserManagementController {
     private final UserBusinessService userBusinessService;
 
     @PostMapping
-    UserDTO create(UserDTO dto) {
+    BaseAPIResponse<UserDTO> create(UserDTO dto) {
         return userBusinessService.createUser(dto);
     }
 
     @GetMapping
-    UserDTO fetch(@RequestParam("id") String id) {
+    BaseAPIResponse<UserDTO> fetch(@RequestParam("id") String id) {
         return userBusinessService.getUser(id);
     }
 
