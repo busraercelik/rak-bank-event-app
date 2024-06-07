@@ -27,6 +27,6 @@ public class PaymentDTO {
 
     LocalDateTime paymentCreatedTime;
     LocalDateTime paymentCompletedTime;
-    LocalDateTime paymentCancelledTime;
+    LocalDateTime paymentRefundedTime;
 
 }

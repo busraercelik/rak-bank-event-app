@@ -28,7 +28,7 @@ public class PaymentClient {
                 .getBody();
     }
 
-    BaseAPIResponse<PaymentDTO> complete(Long paymentId) {
+    public BaseAPIResponse<PaymentDTO> complete(Long paymentId) {
         return restClient.put()
                 .uri(appConfig.getPaymentServiceBaseUrl() + BASE_PATH + "/complete/{paymentId}", paymentId)
                 .retrieve()

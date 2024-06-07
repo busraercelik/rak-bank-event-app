@@ -36,7 +36,7 @@ public class PaymentService {
     public Payment refundPayment(Long paymentId) {
         var payment = paymentRepository.getByPaymentId(paymentId);
         payment.setPaymentStatus(PaymentStatus.REFUNDED);
-        payment.setPaymentCancelledTime(LocalDateTime.now());
+        payment.setPaymentRefundedTime(LocalDateTime.now());
         paymentRepository.saveAndFlush(payment);
         return payment;
     }

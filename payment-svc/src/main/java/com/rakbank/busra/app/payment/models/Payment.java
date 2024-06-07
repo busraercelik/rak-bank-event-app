@@ -28,5 +28,5 @@ public class Payment {
 
     LocalDateTime paymentCreatedTime;
     LocalDateTime paymentCompletedTime;
-    LocalDateTime paymentCancelledTime;
+    LocalDateTime paymentRefundedTime;
 }
