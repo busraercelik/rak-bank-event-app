@@ -4,7 +4,6 @@ package com.rakbank.busra.app.notification.controllers;
 import com.rakbank.busra.app.notification.common.dto.BaseAPIResponse;
 import com.rakbank.busra.app.notification.dtos.NotificationDTO;
 import com.rakbank.busra.app.notification.models.Notification;
-import com.rakbank.busra.app.notification.services.INotificationSenderService;
 import com.rakbank.busra.app.notification.services.NotificationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
