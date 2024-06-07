@@ -1,7 +1,7 @@
-package com.rakbank.busra.app.eventmgmt.dtos.requests;
+package com.rakbank.busra.app.eventmgmt.clients.notificationservice.dtos.commons.requests;
 
 
-import com.rakbank.busra.app.eventmgmt.dtos.NotificationType;
+import com.rakbank.busra.app.eventmgmt.clients.notificationservice.dtos.commons.NotificationType;
 import lombok.Data;
 
 @Data
