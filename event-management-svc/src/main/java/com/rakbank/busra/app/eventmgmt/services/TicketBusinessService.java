@@ -86,10 +86,13 @@ public class TicketBusinessService {
         return new CancelTicketBusinessResponse(refundedPayment, cancelledTicket);
     }
 
-    private static PaymentDTO getPaymentDTO(BookTicketBusinessRequest request, TicketSaleResponseDTO ticketSaleResponse, TicketTypeDTO ticketType) {
+    private static PaymentDTO getPaymentDTO(
+            BookTicketBusinessRequest request, TicketSaleResponseDTO ticketSaleResponse, TicketTypeDTO ticketType) {
         var paymentRequest = new PaymentDTO();
         paymentRequest.setUserId(request.getUserId());
         paymentRequest.setEventId(request.getEventId());
+
+        paymentRequest.setReferenceId(ticketSaleResponse.getReferenceId());
         paymentRequest.setTicketSaleId(ticketSaleResponse.getId());
 
         paymentRequest.setAmount(ticketType.getAmount());

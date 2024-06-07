@@ -18,7 +18,9 @@ public class Payment {
 
     Long userId;
     Long eventId;
+
     Long ticketSaleId;
+    String referenceId;
 
     BigDecimal amount;
     Currency currency;
