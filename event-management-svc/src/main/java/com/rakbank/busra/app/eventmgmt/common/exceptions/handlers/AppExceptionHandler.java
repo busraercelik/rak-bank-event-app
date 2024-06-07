@@ -1,8 +1,8 @@
 package com.rakbank.busra.app.eventmgmt.common.exceptions.handlers;
 
-import com.rakbank.busra.app.notification.common.dto.BaseAPIResponse;
-import com.rakbank.busra.app.notification.common.exceptions.ApplicationException;
-import com.rakbank.busra.app.notification.errors.ErrorCode;
+import com.rakbank.busra.app.eventmgmt.common.dto.BaseAPIResponse;
+import com.rakbank.busra.app.eventmgmt.common.exceptions.ApplicationException;
+import com.rakbank.busra.app.eventmgmt.errors.ErrorCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

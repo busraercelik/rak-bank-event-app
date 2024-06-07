@@ -1,7 +1,6 @@
 package com.rakbank.busra.app.eventmgmt.common.exceptions;
 
-
-import com.rakbank.busra.app.notification.common.errors.BaseErrorCode;
+import com.rakbank.busra.app.eventmgmt.common.errors.BaseErrorCode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
