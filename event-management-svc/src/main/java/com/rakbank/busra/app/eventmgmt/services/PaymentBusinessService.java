@@ -11,6 +11,8 @@ import com.rakbank.busra.app.eventmgmt.common.dto.BaseAPIResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import static com.rakbank.busra.app.eventmgmt.services.NotificationMessageService.getPaymentCompletedNotification;
+
 @AllArgsConstructor
 @Service
 public class PaymentBusinessService {
@@ -32,15 +34,4 @@ public class PaymentBusinessService {
         return paymentResponse;
     }
 
-    private static NotificationRequestDTO getPaymentCompletedNotification(UserDTO user, PaymentDTO payment) {
-        var request = new NotificationRequestDTO();
-        request.setRecipient(user.getEmail());
-        request.setNotificationType(NotificationType.EMAIL);
-        request.setMessage(String.format("""
-                You have successfully completed a payment.
-                Amount : %s
-                ReferenceId : %s
-                """, payment.getAmount(), payment.getReferenceId()));
-        return request;
-    }
 }

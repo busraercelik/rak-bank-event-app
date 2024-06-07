@@ -21,6 +21,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import static com.rakbank.busra.app.eventmgmt.services.NotificationMessageService.getBookingSuccessfulNotification;
+
 @Slf4j
 @Service
 @AllArgsConstructor
@@ -59,27 +61,6 @@ public class TicketBusinessService {
         notificationClient.notifyUser(notification);
         return new BookTicketBusinessResponse(
                 request.getUserId(), request.getEventId(), paymentResponse.getId(), ticketSaleResponse.getReferenceId());
-    }
-
-    private static NotificationRequestDTO getBookingSuccessfulNotification(UserDTO user, EventDTO event, TicketSaleResponseDTO ticketSaleResponse) {
-        var notification = new NotificationRequestDTO();
-        notification.setNotificationType(NotificationType.EMAIL);
-        notification.setRecipient(user.getEmail());
-        notification.setSubject(String.format("Event %s booked successfully for date %s",
-                event.getName(), event.getDateFrom()));
-        notification.setMessage(String.format("""
-                You have successfully booked a ticket - %s
-                
-                ● Event Name : %s
-                ● Event Date : %s
-                ● Event Location :%s
-                ● User Name : %s
-                ● Ticket Type : %s
-                ● Number of Ticket(s) : 1
-                ● Payment Amount : %s
-                """, ticketSaleResponse.getReferenceId(), event.getName(), event.getDateFrom(),
-                event.get, user.getEmail(), ticketSaleResponse.getTicketTypeName(), ticketSaleResponse.getAmount()));
-        return notification;
     }
 
 
