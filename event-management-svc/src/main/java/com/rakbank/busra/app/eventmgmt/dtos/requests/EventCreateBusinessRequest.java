@@ -1,6 +1,5 @@
 package com.rakbank.busra.app.eventmgmt.dtos.requests;
 
-import com.rakbank.busra.app.eventmgmt.clients.eventservice.dtos.commons.EventDTO;
 import com.rakbank.busra.app.eventmgmt.dtos.commons.TicketBookingCapacity;
 import lombok.Data;
 

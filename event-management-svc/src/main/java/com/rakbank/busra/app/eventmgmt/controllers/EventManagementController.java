@@ -20,7 +20,7 @@ class EventManagementController {
   private final EventBusinessService eventBusinessService;
 
   @PostMapping
-  BaseAPIResponse<EventCreateBusinessResponse> create(EventCreateBusinessRequest request) {
+  BaseAPIResponse<EventCreateBusinessResponse> create(@RequestBody EventCreateBusinessRequest request) {
     var result = eventBusinessService.create(request);
     return new BaseAPIResponse<>("200", "created a new event", result);
   }

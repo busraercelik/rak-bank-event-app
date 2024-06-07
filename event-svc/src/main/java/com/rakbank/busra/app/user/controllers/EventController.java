@@ -11,13 +11,13 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping(path = "/v1/events")
+@RequestMapping(path = "/v1/event")
 public class EventController {
 
     private final EventService eventService;
 
     @PostMapping
-    BaseAPIResponse<Event> create(EventDTO dto) {
+    BaseAPIResponse<Event> create(@RequestBody EventDTO dto) {
         var result = eventService.create(dto);
         return new BaseAPIResponse<>("200","event created successfully", result);
     }

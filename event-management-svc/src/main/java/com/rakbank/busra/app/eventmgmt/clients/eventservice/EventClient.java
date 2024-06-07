@@ -15,12 +15,14 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 @AllArgsConstructor
 @Component
 public class EventClient {
+    public static final String BASE_PATH = "/v1/event";
+
     private final AppConfig appConfig;
     private final RestClient restClient;
 
     public BaseAPIResponse<EventDTO> createEvent(EventDTO request) {
         return restClient.post()
-                .uri(appConfig.getEventServiceBaseUrl() + "/v1/event")
+                .uri(appConfig.getEventServiceBaseUrl() + BASE_PATH)
                 .contentType(APPLICATION_JSON)
                 .body(request)
                 .retrieve()
@@ -30,7 +32,7 @@ public class EventClient {
 
     public BaseAPIResponse<EventDTO> getById(String id) {
         return restClient.get()
-                .uri(appConfig.getEventServiceBaseUrl() + "/v1/event/{id}", id)
+                .uri(appConfig.getEventServiceBaseUrl() + BASE_PATH+"/{id}", id)
                 .retrieve()
                 .toEntity(new ParameterizedTypeReference<BaseAPIResponse<EventDTO>>() {})
                 .getBody();
@@ -38,7 +40,7 @@ public class EventClient {
 
     public List<EventDTO> search(String search) {
         return restClient.get()
-                .uri(appConfig.getEventServiceBaseUrl() + "/v1/event?search={search}", search)
+                .uri(appConfig.getEventServiceBaseUrl() + BASE_PATH+"?search={search}", search)
                 .retrieve()
                 .toEntity(new ParameterizedTypeReference<List<EventDTO>>() {})
                 .getBody();
