@@ -33,9 +33,7 @@ public class EventBusinessService {
         var inventoryCreateRequest = businessRequestMapper.toEventTicketInventoryRequestDTO(event.getId(), request);
         //create the event inventory
         var inventory = ticketClient.createEventTicketInventory(inventoryCreateRequest).getResult();
-
         var eventCreateBusinessResponse = businessResponseMapper.toEventCreateBusinessResponse(event, inventory);
-
         log.info("Finished creating a new event : {}", request);
         return eventCreateBusinessResponse;
     }
