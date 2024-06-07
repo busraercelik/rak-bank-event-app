@@ -22,8 +22,8 @@ public class EventController {
     }
 
     @GetMapping(path = "/{id}")
-    BaseAPIResponse<EventDTO>  getById(@PathVariable("id") Long eventId) {
-        var result =  eventService.getById(eventId);
+    BaseAPIResponse<EventDTO> getById(@PathVariable("id") Long eventId) {
+        var result = eventService.getById(eventId);
         return new BaseAPIResponse<>("200","event fetched successfully", result);
     }
 

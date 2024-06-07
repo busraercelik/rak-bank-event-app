@@ -10,7 +10,7 @@ public interface EventMapper {
 
     @Mapping(target = "dateTo", ignore = true)
     @Mapping(target = "dateFrom", ignore = true)
-    Event eventCreateRequestDTOToEvent(EventDTO requestDTO);
-    EventDTO eventToEventResponseDTO(Event requestDTO);
+    Event eventDTOToEvent(EventDTO requestDTO);
+    EventDTO eventToEventDTO(Event requestDTO);
 
 }

@@ -1,5 +1,7 @@
-package com.rakbank.busra.app.eventmgmt.dtos;
+package com.rakbank.busra.app.payment.dtos;
 
+import com.rakbank.busra.app.payment.models.PaymentStatus;
+import com.rakbank.busra.app.payment.models.PaymentType;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
@@ -10,16 +12,9 @@ import java.time.LocalDateTime;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class PaymentDTO {
+    Long userId;
     BigDecimal amount;
     PaymentStatus paymentStatus;
     LocalDateTime paymentTime;
     PaymentType paymentType;
-
-    enum PaymentStatus {
-        PENDING, COMPLETED, FAILED, CANCELLED
-    }
-
-    enum PaymentType {
-        CREDIT_CARD, CASH, VOUCHER
-    }
 }
