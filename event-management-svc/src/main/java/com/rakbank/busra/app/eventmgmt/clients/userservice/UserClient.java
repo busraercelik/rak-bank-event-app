@@ -29,7 +29,7 @@ public class UserClient {
     }
 
 
-    public BaseAPIResponse<UserDTO> getById(String id) {
+    public BaseAPIResponse<UserDTO> getById(Long id) {
         return restClient.get()
                 .uri(appConfig.getUserServiceBaseUrl() + "/v1/user/{id}", id)
                 .retrieve()

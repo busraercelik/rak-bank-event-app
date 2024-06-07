@@ -17,7 +17,7 @@ class UserController {
   private final UserService userService;
 
   @PostMapping
-  BaseAPIResponse<User> create(UserDTO dto) {
+  BaseAPIResponse<User> create(@RequestBody UserDTO dto) {
     var result = userService.create(dto);
     return new BaseAPIResponse<>("200","user created successfully", result);
   }

@@ -21,7 +21,7 @@ class UserManagementController {
     }
 
     @GetMapping
-    BaseAPIResponse<UserDTO> fetch(@RequestParam("id") String id) {
+    BaseAPIResponse<UserDTO> fetch(@RequestParam("id") Long id) {
         return userBusinessService.getUser(id);
     }
 

@@ -1,11 +1,13 @@
 package com.rakbank.busra.app.eventmgmt.services;
 
 import com.rakbank.busra.app.eventmgmt.clients.eventservice.EventClient;
+import com.rakbank.busra.app.eventmgmt.clients.notificationservice.NotificationClient;
 import com.rakbank.busra.app.eventmgmt.clients.paymentservice.PaymentClient;
 import com.rakbank.busra.app.eventmgmt.clients.paymentservice.dtos.commons.PaymentDTO;
 import com.rakbank.busra.app.eventmgmt.clients.ticketservice.TicketClient;
 import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.commons.TicketTypeDTO;
 import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.responses.TicketSaleResponseDTO;
+import com.rakbank.busra.app.eventmgmt.clients.userservice.UserClient;
 import com.rakbank.busra.app.eventmgmt.dtos.requests.BookTicketBusinessRequest;
 import com.rakbank.busra.app.eventmgmt.dtos.requests.CancelTicketBusinessRequest;
 import com.rakbank.busra.app.eventmgmt.dtos.responses.BookTicketBusinessResponse;
@@ -20,12 +22,16 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class TicketBusinessService {
 
+    private final UserClient userClient;
     private final EventClient eventClient;
     private final TicketClient ticketClient;
     private final PaymentClient paymentClient;
+    private final NotificationClient notificationClient;
     private final BusinessRequestMapper businessRequestMapper;
 
     public BookTicketBusinessResponse bookTicket(BookTicketBusinessRequest request) {
+        //fetch the user - validate if it exists
+        var user = userClient.getById(request.getUserId());
         // fetch the event - validate if it exists
         var event = eventClient.getById(request.getEventId()).getResult();
         log.info("Booking ticket for event : {} for user : {}", event.getName(), request.getUserId());
@@ -40,9 +46,14 @@ public class TicketBusinessService {
         //link payment with ticketSale
         ticketClient.linkPaymentWithTicketSale(ticketSaleResponse.getReferenceId(), paymentResponse.getId());
 
+        //notify user of booking
+        //notificationClient.notifyUser(get);
         return new BookTicketBusinessResponse(
                 request.getUserId(), request.getEventId(), paymentResponse.getId(), ticketSaleResponse.getReferenceId());
     }
+
+
+
 
     public CancelTicketBusinessResponse cancelTicket(CancelTicketBusinessRequest request) {
         var ticket = ticketClient.fetchTicketByReferenceId(request.getReferenceId()).getResult();

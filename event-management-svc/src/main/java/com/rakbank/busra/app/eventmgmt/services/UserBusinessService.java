@@ -16,7 +16,7 @@ public class UserBusinessService {
         return userClient.createUser(dto);
     }
 
-    public BaseAPIResponse<UserDTO> getUser(String id) {
+    public BaseAPIResponse<UserDTO> getUser(Long id) {
         return userClient.getById(id);
     }
 
