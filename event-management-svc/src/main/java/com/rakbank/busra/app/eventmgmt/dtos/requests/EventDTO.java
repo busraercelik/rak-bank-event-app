@@ -1,17 +1,18 @@
-package com.rakbank.busra.app.eventmgmt.dtos;
+package com.rakbank.busra.app.eventmgmt.dtos.requests;
 
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
-import java.time.LocalDateTime;
-
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class EventCreateRequestDTO {
+public class EventDTO {
+    Long id;
     String name;
     String description;
     String host;
-    LocalDateTime dateFrom;
-    LocalDateTime dateTo;
+
+    String dateTo;
+    String dateFrom;
+    Long eventTicketInventoryId;
 }

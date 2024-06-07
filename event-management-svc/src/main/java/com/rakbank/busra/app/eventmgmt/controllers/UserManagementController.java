@@ -1,6 +1,6 @@
 package com.rakbank.busra.app.eventmgmt.controllers;
 
-import com.rakbank.busra.app.eventmgmt.dtos.UserDTO;
+import com.rakbank.busra.app.eventmgmt.dtos.requests.UserDTO;
 import com.rakbank.busra.app.eventmgmt.services.UserBusinessService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,7 +1,9 @@
-package com.rakbank.busra.app.eventmgmt.clients;
+package com.rakbank.busra.app.eventmgmt.clients.eventservice;
 
+import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dto.response.TicketSaleDTO;
+import com.rakbank.busra.app.eventmgmt.common.dto.BaseAPIResponse;
 import com.rakbank.busra.app.eventmgmt.config.AppConfig;
-import com.rakbank.busra.app.eventmgmt.dtos.EventCreateRequestDTO;
+import com.rakbank.busra.app.eventmgmt.dtos.requests.EventDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
@@ -17,28 +19,29 @@ public class EventClient {
     private final AppConfig appConfig;
     private final RestClient restClient;
 
-    public EventCreateRequestDTO createEvent(EventCreateRequestDTO request) {
+    public BaseAPIResponse<EventDTO> createEvent(EventDTO request) {
         return restClient.post()
                 .uri(appConfig.getUserServiceBaseUrl() + "/v1/event")
                 .contentType(APPLICATION_JSON)
                 .body(request)
                 .retrieve()
-                .toEntity(EventCreateRequestDTO.class)
+                .toEntity(new ParameterizedTypeReference<BaseAPIResponse<EventDTO>>() {})
                 .getBody();
     }
 
-    public EventCreateRequestDTO getById(String id) {
+    public BaseAPIResponse<EventDTO> getById(String id) {
         return restClient.get()
                 .uri(appConfig.getUserServiceBaseUrl() + "/v1/event/{id}", id)
                 .retrieve()
-                .body(EventCreateRequestDTO.class);
+                .toEntity(new ParameterizedTypeReference<BaseAPIResponse<EventDTO>>() {})
+                .getBody();
     }
 
-    public List<EventCreateRequestDTO> search(String search) {
+    public List<EventDTO> search(String search) {
         return restClient.get()
                 .uri(appConfig.getUserServiceBaseUrl() + "/v1/event?search={search}", search)
                 .retrieve()
-                .toEntity(new ParameterizedTypeReference<List<EventCreateRequestDTO>>() {})
+                .toEntity(new ParameterizedTypeReference<List<EventDTO>>() {})
                 .getBody();
 
     }

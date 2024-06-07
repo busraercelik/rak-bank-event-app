@@ -1,7 +1,7 @@
 package com.rakbank.busra.app.eventmgmt.services;
 
-import com.rakbank.busra.app.eventmgmt.clients.UserClient;
-import com.rakbank.busra.app.eventmgmt.dtos.UserDTO;
+import com.rakbank.busra.app.eventmgmt.clients.userservice.UserClient;
+import com.rakbank.busra.app.eventmgmt.dtos.requests.UserDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

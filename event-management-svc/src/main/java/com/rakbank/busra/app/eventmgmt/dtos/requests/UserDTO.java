@@ -1,4 +1,4 @@
-package com.rakbank.busra.app.eventmgmt.dtos;
+package com.rakbank.busra.app.eventmgmt.dtos.requests;
 
 import lombok.AccessLevel;
 import lombok.Data;

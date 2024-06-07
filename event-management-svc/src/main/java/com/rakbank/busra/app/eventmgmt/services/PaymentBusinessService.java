@@ -1,7 +1,8 @@
 package com.rakbank.busra.app.eventmgmt.services;
 
-import com.rakbank.busra.app.eventmgmt.clients.PaymentClient;
-import com.rakbank.busra.app.eventmgmt.dtos.PaymentDTO;
+import com.rakbank.busra.app.eventmgmt.clients.paymentservice.PaymentClient;
+import com.rakbank.busra.app.eventmgmt.common.dto.BaseAPIResponse;
+import com.rakbank.busra.app.eventmgmt.dtos.requests.PaymentDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,11 +11,8 @@ import org.springframework.stereotype.Service;
 public class PaymentBusinessService {
     private final PaymentClient paymentClient;
 
-    public PaymentDTO create(PaymentDTO dto) {
+    public BaseAPIResponse<PaymentDTO> create(PaymentDTO dto) {
         return paymentClient.create(dto);
     }
 
-    public PaymentDTO update(PaymentDTO dto) {
-        return paymentClient.update(dto);
-    }
 }

@@ -1,5 +1,6 @@
-package com.rakbank.busra.app.eventmgmt.dtos;
+package com.rakbank.busra.app.eventmgmt.dtos.requests;
 
+import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dto.commons.Currency;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
@@ -10,10 +11,21 @@ import java.time.LocalDateTime;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class PaymentDTO {
+    Long id;
+
+    Long userId;
+    Long eventId;
+    Long ticketSaleId;
+
     BigDecimal amount;
-    PaymentStatus paymentStatus;
-    LocalDateTime paymentCreatedTime;
+    Currency currency;
+
     PaymentType paymentType;
+    PaymentStatus paymentStatus;
+
+    LocalDateTime paymentCreatedTime;
+    LocalDateTime paymentCompletedTime;
+    LocalDateTime paymentCancelledTime;
 
     enum PaymentStatus {
         PENDING, COMPLETED, FAILED, CANCELLED

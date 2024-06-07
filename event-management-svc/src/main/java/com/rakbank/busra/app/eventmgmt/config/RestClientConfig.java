@@ -1,4 +1,4 @@
-package com.rakbank.busra.app.eventmgmt.clients;
+package com.rakbank.busra.app.eventmgmt.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

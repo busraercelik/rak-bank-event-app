@@ -22,27 +22,25 @@ public class EventService {
     private final EventRepository eventRepository;
     public static final String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm";
 
-    public EventDTO create(EventDTO dto) {
+    public Event create(EventDTO dto) {
         var event = getEvent(dto);
         eventRepository.saveAndFlush(event);
-        return eventMapper.eventToEventDTO(event);
+        return event;
     }
 
-    public EventDTO getById(Long id) {
-        var event = eventRepository.findById(id)
+    public Event getById(Long id) {
+        return eventRepository.findById(id)
                 .orElseThrow(() -> new ApplicationException(
                         String.format("No event found with id %s", id), ErrorCode.EVENT_NOT_FOUND));
-        return eventMapper.eventToEventDTO(event);
     }
 
-    public List<EventDTO> search(String search) {
-        return eventRepository.searchText(search)
-                .stream().map(eventMapper::eventToEventDTO).toList();
+    public List<Event> search(String search) {
+        return eventRepository.searchText(search);
     }
 
     private Event getEvent(EventDTO dto) {
         var result = getGetEventDates(dto);
-        var event = eventMapper.eventDTOToEvent(dto);
+        var event = eventMapper.toEventEntity(dto);
         event.setDateFrom(result.fromDate());
         event.setDateTo(result.toDate());
         return event;

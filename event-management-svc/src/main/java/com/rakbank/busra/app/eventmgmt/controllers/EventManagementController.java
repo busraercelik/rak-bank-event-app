@@ -2,7 +2,9 @@ package com.rakbank.busra.app.eventmgmt.controllers;
 
 import java.util.List;
 
-import com.rakbank.busra.app.eventmgmt.dtos.EventCreateRequestDTO;
+import com.rakbank.busra.app.eventmgmt.common.dto.BaseAPIResponse;
+import com.rakbank.busra.app.eventmgmt.dtos.requests.EventDTO;
+import com.rakbank.busra.app.eventmgmt.dtos.responses.EventResponseDTO;
 import com.rakbank.busra.app.eventmgmt.services.EventBusinessService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,17 +19,17 @@ class EventManagementController {
   private final EventBusinessService eventBusinessService;
 
   @PostMapping
-  EventCreateRequestDTO create(EventCreateRequestDTO eventCreateRequestDTO) {
-    return eventBusinessService.create(eventCreateRequestDTO);
+  EventResponseDTO create(EventDTO eventDTO) {
+    return eventBusinessService.create(eventDTO);
   }
 
   @GetMapping("/{id}")
-  EventCreateRequestDTO getById(@PathVariable String id) {
+  BaseAPIResponse<EventDTO> getById(@PathVariable String id) {
     return eventBusinessService.fetch(id);
   }
 
   @GetMapping
-  List<EventCreateRequestDTO> search(@RequestParam("search") String search) {
+  List<EventDTO> search(@RequestParam("search") String search) {
     return eventBusinessService.search(search);
   }
 

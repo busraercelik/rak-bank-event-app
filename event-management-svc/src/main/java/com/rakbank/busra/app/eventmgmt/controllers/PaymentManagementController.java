@@ -1,6 +1,7 @@
 package com.rakbank.busra.app.eventmgmt.controllers;
 
-import com.rakbank.busra.app.eventmgmt.dtos.PaymentDTO;
+import com.rakbank.busra.app.eventmgmt.common.dto.BaseAPIResponse;
+import com.rakbank.busra.app.eventmgmt.dtos.requests.PaymentDTO;
 import com.rakbank.busra.app.eventmgmt.services.PaymentBusinessService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,12 +16,8 @@ class PaymentManagementController {
   private final PaymentBusinessService service;
 
   @PostMapping
-  PaymentDTO create(PaymentDTO dto) {
+  public BaseAPIResponse<PaymentDTO> create(PaymentDTO dto) {
     return service.create(dto);
   }
 
-  @PutMapping
-  PaymentDTO update(PaymentDTO dto) {
-    return service.update(dto);
-  }
 }
