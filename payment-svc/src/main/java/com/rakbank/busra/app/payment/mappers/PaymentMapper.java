@@ -7,6 +7,6 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface PaymentMapper {
-    Payment eventDTOToEvent(PaymentDTO requestDTO);
-    PaymentDTO eventToEventDTO(Payment request);
+    Payment toPaymentEntity(PaymentDTO requestDTO);
+    PaymentDTO toPaymentDTO(Payment payment);
 }

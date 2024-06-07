@@ -15,9 +15,18 @@ public class Payment {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     Long id;
+
     Long userId;
+    Long eventId;
+    Long ticketSaleId;
+
     BigDecimal amount;
-    PaymentStatus paymentStatus;
-    LocalDateTime paymentTime;
+    Currency currency;
+
     PaymentType paymentType;
+    PaymentStatus paymentStatus;
+
+    LocalDateTime paymentCreatedTime;
+    LocalDateTime paymentCompletedTime;
+    LocalDateTime paymentCancelledTime;
 }

@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class PaymentDTO {
     BigDecimal amount;
     PaymentStatus paymentStatus;
-    LocalDateTime paymentTime;
+    LocalDateTime paymentCreatedTime;
     PaymentType paymentType;
 
     enum PaymentStatus {

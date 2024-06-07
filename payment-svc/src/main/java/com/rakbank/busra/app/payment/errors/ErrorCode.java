@@ -6,9 +6,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public enum ErrorCode implements BaseErrorCode {
     INTERNAL_SERVER_ERROR("ERROR_GEN_500", 500),
-    PAYMENT_FAILED("ERROR_EVENT_100", 400),
-    DUPLICATE_TRANSACTION("ERROR_EVENT_100", 409),
-    INVALID_DATE_TIME_FORMAT("ERROR_EVENT_200", 400),
+    PAYMENT_NOT_FOUND("ERROR_PAYMENT_100", 404),
     ;
 
     final String code;

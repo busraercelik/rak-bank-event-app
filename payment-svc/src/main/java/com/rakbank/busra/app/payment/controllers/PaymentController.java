@@ -2,6 +2,7 @@ package com.rakbank.busra.app.payment.controllers;
 
 import com.rakbank.busra.app.payment.common.dto.BaseAPIResponse;
 import com.rakbank.busra.app.payment.dtos.PaymentDTO;
+import com.rakbank.busra.app.payment.models.Payment;
 import com.rakbank.busra.app.payment.services.PaymentService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -14,16 +15,20 @@ public class PaymentController {
     private final PaymentService paymentService;
 
     @PostMapping
-    BaseAPIResponse<PaymentDTO> create(@Valid @RequestBody PaymentDTO dto) {
+    BaseAPIResponse<Payment> create(@Valid @RequestBody PaymentDTO dto) {
         var result = paymentService.create(dto);
-        return new BaseAPIResponse<>("200",
-                String.format("Payment is done successfully, userId : %s", result.getUserId()), result);
+        return new BaseAPIResponse<>("200", "Payment is created successfully", result);
     }
 
-    @PutMapping
-    BaseAPIResponse<PaymentDTO> update(@Valid @RequestBody PaymentDTO dto) {
-        var result = paymentService.update(dto);
-        return new BaseAPIResponse<>("200",
-                String.format("Payment is updated successfully, userId : %s", result.getUserId()), result);
+    @PutMapping("/complete/{paymentId}")
+    BaseAPIResponse<Payment> complete(@PathVariable("paymentId") Long paymentId) {
+        var result = paymentService.completePayment(paymentId);
+        return new BaseAPIResponse<>("200", "Payment is updated to complete successfully", result);
+    }
+
+    @DeleteMapping("/cancel/{paymentId}")
+    BaseAPIResponse<Payment> cancel(@PathVariable("paymentId") Long paymentId) {
+        var result = paymentService.cancelPayment(paymentId);
+        return new BaseAPIResponse<>("200", "Payment is updated to cancelled successfully", result);
     }
 }
