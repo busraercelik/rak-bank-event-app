@@ -6,24 +6,22 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Slf4j
 @RestController
 @AllArgsConstructor
 @RequestMapping("v1/user")
 class UserManagementController {
 
-  private final UserBusinessService userBusinessService;
+    private final UserBusinessService userBusinessService;
 
-  @PostMapping
-  UserDTO create(UserDTO dto) {
-    return userBusinessService.createUser(dto);
-  }
+    @PostMapping
+    UserDTO create(UserDTO dto) {
+        return userBusinessService.createUser(dto);
+    }
 
-  @GetMapping
-  List<UserDTO> fetch(@RequestParam("id") String id) {
-    return List.of();
-  }
+    @GetMapping
+    UserDTO fetch(@RequestParam("id") String id) {
+        return userBusinessService.getUser(id);
+    }
 
 }

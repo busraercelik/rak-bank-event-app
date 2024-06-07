@@ -16,9 +16,9 @@ public class UserClient {
     private final AppConfig appConfig;
     private final RestClient restClient;
 
-    public UserDTO createUser(UserDTO request){
+    public UserDTO createUser(UserDTO request) {
         ResponseEntity<UserDTO> response = restClient.post()
-                .uri(appConfig.getUserServiceBaseUrl()+"/v1/user")
+                .uri(appConfig.getUserServiceBaseUrl() + "/v1/user")
                 .contentType(APPLICATION_JSON)
                 .body(request)
                 .retrieve()
@@ -27,6 +27,13 @@ public class UserClient {
         return response.getBody();
     }
 
+
+    public UserDTO getById(String id) {
+        return restClient.get()
+                .uri(appConfig.getUserServiceBaseUrl() + "/v1/user/{id}", id)
+                .retrieve()
+                .body(UserDTO.class);
+    }
 }
 
 

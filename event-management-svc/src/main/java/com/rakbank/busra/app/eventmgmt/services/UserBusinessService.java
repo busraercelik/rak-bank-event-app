@@ -15,4 +15,9 @@ public class UserBusinessService {
     public UserDTO createUser(UserDTO dto) {
         return userClient.createUser(dto);
     }
+
+    public UserDTO getUser(String id) {
+        return userClient.getById(id);
+    }
+
 }

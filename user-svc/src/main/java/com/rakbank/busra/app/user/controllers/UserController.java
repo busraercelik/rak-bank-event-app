@@ -1,11 +1,11 @@
 package com.rakbank.busra.app.user.controllers;
 
+import com.rakbank.busra.app.user.common.dto.BaseAPIResponse;
 import com.rakbank.busra.app.user.dtos.UserDTO;
+import com.rakbank.busra.app.user.services.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Slf4j
 @RestController
@@ -13,15 +13,17 @@ import java.util.List;
 @RequestMapping("v1/user")
 class UserController {
 
+  private final UserService userService;
+
   @PostMapping
-  UserDTO create(UserDTO dto) {
-    log.info("creating user : {}", dto);
-    return dto;
+  BaseAPIResponse<UserDTO> create(UserDTO dto) {
+    var result = userService.create(dto);
+    return new BaseAPIResponse<>("200","user created successfully", result);
   }
 
-  @GetMapping
-  List<UserDTO> fetch(@RequestParam("id") String id) {
-    return List.of();
+  @GetMapping(path = "/{id}")
+  BaseAPIResponse<UserDTO> fetch(@PathVariable("id") Long id) {
+    var result = userService.fetch(id);
+    return new BaseAPIResponse<>("200","user fetched successfully", result);
   }
-
 }
