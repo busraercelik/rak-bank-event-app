@@ -21,7 +21,7 @@ public class NotificationClient {
 
     public BaseAPIResponse<NotificationResponseDTO> notifyUser(NotificationRequestDTO request) {
         return restClient.post()
-                .uri(appConfig.getUserServiceBaseUrl() + BASE_PATH)
+                .uri(appConfig.getNotificationServiceBaseUrl() + BASE_PATH)
                 .contentType(APPLICATION_JSON)
                 .body(request)
                 .retrieve()

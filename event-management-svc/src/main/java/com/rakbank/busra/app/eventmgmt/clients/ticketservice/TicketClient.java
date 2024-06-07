@@ -30,7 +30,7 @@ public class TicketClient {
 
     public BaseAPIResponse<TicketSaleResponseDTO> createTicketSale(TicketSaleRequestDTO request) {
         return restClient.post()
-                .uri(appConfig.getUserServiceBaseUrl() + TICKET_BOOKING_BASE_URL)
+                .uri(appConfig.getTicketServiceBaseUrl() + TICKET_BOOKING_BASE_URL)
                 .contentType(APPLICATION_JSON)
                 .body(request)
                 .retrieve()
@@ -41,7 +41,7 @@ public class TicketClient {
 
     public BaseAPIResponse<TicketSaleResponseDTO> fetchTicketByReferenceId(String referenceId) {
         return restClient.get()
-                .uri(appConfig.getUserServiceBaseUrl() + TICKET_BOOKING_BASE_URL + "/{referenceId}", referenceId)
+                .uri(appConfig.getTicketServiceBaseUrl() + TICKET_BOOKING_BASE_URL + "/{referenceId}", referenceId)
                 .retrieve()
                 .toEntity(new ParameterizedTypeReference<BaseAPIResponse<TicketSaleResponseDTO>>() {
                 })
@@ -50,7 +50,7 @@ public class TicketClient {
 
     public BaseAPIResponse<TicketSaleDTO> cancelTicketSale(String referenceId) {
         return restClient.put()
-                .uri(appConfig.getUserServiceBaseUrl() + TICKET_BOOKING_BASE_URL + "/{referenceId}", referenceId)
+                .uri(appConfig.getTicketServiceBaseUrl() + TICKET_BOOKING_BASE_URL + "/{referenceId}", referenceId)
                 .retrieve()
                 .toEntity(new ParameterizedTypeReference<BaseAPIResponse<TicketSaleDTO>>() {
                 })
@@ -59,7 +59,7 @@ public class TicketClient {
 
     public BaseAPIResponse<CreateTicketEventInventoryResultDTO> createEventTicketInventory(EventTicketInventoryRequestDTO dto) {
         return restClient.post()
-                .uri(appConfig.getUserServiceBaseUrl() + TICKET_INVENTORY_BASE_URL)
+                .uri(appConfig.getTicketServiceBaseUrl() + TICKET_INVENTORY_BASE_URL)
                 .contentType(APPLICATION_JSON)
                 .body(dto)
                 .retrieve()
@@ -70,7 +70,7 @@ public class TicketClient {
 
     public BaseAPIResponse<EventTicketInventoryResponseDTO> getEventTicketInventoryByEventId(Long eventId) {
         return restClient.get()
-                .uri(appConfig.getUserServiceBaseUrl() + TICKET_INVENTORY_BASE_URL + "/event/{eventId}", eventId)
+                .uri(appConfig.getTicketServiceBaseUrl() + TICKET_INVENTORY_BASE_URL + "/event/{eventId}", eventId)
                 .retrieve()
                 .toEntity(new ParameterizedTypeReference<BaseAPIResponse<EventTicketInventoryResponseDTO>>() {
                 })
@@ -79,7 +79,7 @@ public class TicketClient {
 
     public BaseAPIResponse<List<TicketTypeDTO>> getAllTicketTypes() {
         return restClient.get()
-                .uri(appConfig.getUserServiceBaseUrl() + TICKET_INVENTORY_BASE_URL + "/type")
+                .uri(appConfig.getTicketServiceBaseUrl() + TICKET_INVENTORY_BASE_URL + "/type")
                 .retrieve()
                 .toEntity(new ParameterizedTypeReference<BaseAPIResponse<List<TicketTypeDTO>>>() {
                 })

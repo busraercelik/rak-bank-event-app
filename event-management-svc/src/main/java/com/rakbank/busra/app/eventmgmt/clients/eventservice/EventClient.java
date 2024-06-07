@@ -20,7 +20,7 @@ public class EventClient {
 
     public BaseAPIResponse<EventDTO> createEvent(EventDTO request) {
         return restClient.post()
-                .uri(appConfig.getUserServiceBaseUrl() + "/v1/event")
+                .uri(appConfig.getEventServiceBaseUrl() + "/v1/event")
                 .contentType(APPLICATION_JSON)
                 .body(request)
                 .retrieve()
@@ -30,7 +30,7 @@ public class EventClient {
 
     public BaseAPIResponse<EventDTO> getById(String id) {
         return restClient.get()
-                .uri(appConfig.getUserServiceBaseUrl() + "/v1/event/{id}", id)
+                .uri(appConfig.getEventServiceBaseUrl() + "/v1/event/{id}", id)
                 .retrieve()
                 .toEntity(new ParameterizedTypeReference<BaseAPIResponse<EventDTO>>() {})
                 .getBody();
@@ -38,7 +38,7 @@ public class EventClient {
 
     public List<EventDTO> search(String search) {
         return restClient.get()
-                .uri(appConfig.getUserServiceBaseUrl() + "/v1/event?search={search}", search)
+                .uri(appConfig.getEventServiceBaseUrl() + "/v1/event?search={search}", search)
                 .retrieve()
                 .toEntity(new ParameterizedTypeReference<List<EventDTO>>() {})
                 .getBody();

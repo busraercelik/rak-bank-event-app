@@ -19,7 +19,7 @@ public class PaymentClient {
 
     public BaseAPIResponse<PaymentDTO> create(PaymentDTO request) {
         return restClient.post()
-                .uri(appConfig.getUserServiceBaseUrl() + BASE_PATH)
+                .uri(appConfig.getPaymentServiceBaseUrl() + BASE_PATH)
                 .contentType(APPLICATION_JSON)
                 .body(request)
                 .retrieve()
@@ -30,7 +30,7 @@ public class PaymentClient {
 
     BaseAPIResponse<PaymentDTO> complete(Long paymentId) {
         return restClient.put()
-                .uri(appConfig.getUserServiceBaseUrl() + BASE_PATH + "/complete/{paymentId}", paymentId)
+                .uri(appConfig.getPaymentServiceBaseUrl() + BASE_PATH + "/complete/{paymentId}", paymentId)
                 .retrieve()
                 .toEntity(new ParameterizedTypeReference<BaseAPIResponse<PaymentDTO>>() {
                 })
@@ -39,7 +39,7 @@ public class PaymentClient {
 
     BaseAPIResponse<PaymentDTO> cancel(Long paymentId) {
         return restClient.delete()
-                .uri(appConfig.getUserServiceBaseUrl() + BASE_PATH + "/cancel/{paymentId}", paymentId)
+                .uri(appConfig.getPaymentServiceBaseUrl() + BASE_PATH + "/cancel/{paymentId}", paymentId)
                 .retrieve()
                 .toEntity(new ParameterizedTypeReference<BaseAPIResponse<PaymentDTO>>() {
                 })
