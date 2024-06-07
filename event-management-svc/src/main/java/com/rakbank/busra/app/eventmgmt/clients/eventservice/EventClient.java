@@ -38,11 +38,11 @@ public class EventClient {
                 .getBody();
     }
 
-    public List<EventDTO> search(String search) {
+    public BaseAPIResponse<List<EventDTO>> search(String search) {
         return restClient.get()
                 .uri(appConfig.getEventServiceBaseUrl() + BASE_PATH+"?search={search}", search)
                 .retrieve()
-                .toEntity(new ParameterizedTypeReference<List<EventDTO>>() {})
+                .toEntity(new ParameterizedTypeReference<BaseAPIResponse<List<EventDTO>>>() {})
                 .getBody();
 
     }

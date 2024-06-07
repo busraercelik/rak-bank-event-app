@@ -31,7 +31,7 @@ class EventManagementController {
   }
 
   @GetMapping
-  List<EventDTO> search(@RequestParam("search") String search) {
+  BaseAPIResponse<List<EventDTO>> search(@RequestParam("search") String search) {
     return eventBusinessService.search(search);
   }
 

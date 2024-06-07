@@ -2,8 +2,6 @@ package com.rakbank.busra.app.eventmgmt.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
 import java.util.UUID;
@@ -12,9 +10,11 @@ import java.util.UUID;
 public class RestClientConfig {
 
     @Bean
-    public RestClient restClient(){
+    public RestClient restClient(ResponseCodeInterceptor responseCodeInterceptor){
         return RestClient.builder()
+                .requestInterceptor(responseCodeInterceptor)
                 .defaultHeader("X-Trace-ID", UUID.randomUUID().toString())
                 .build();
     }
+
 }

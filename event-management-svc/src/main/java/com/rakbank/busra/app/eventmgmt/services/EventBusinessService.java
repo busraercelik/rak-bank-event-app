@@ -42,7 +42,7 @@ public class EventBusinessService {
         return eventClient.getById(id);
     }
 
-    public List<EventDTO> search(String search) {
+    public BaseAPIResponse<List<EventDTO>> search(String search) {
         return eventClient.search(search);
     }
 }
