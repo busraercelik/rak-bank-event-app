@@ -1,7 +1,7 @@
 package com.rakbank.busra.app.eventmgmt.controllers;
 
 import com.rakbank.busra.app.eventmgmt.common.dto.BaseAPIResponse;
-import com.rakbank.busra.app.eventmgmt.dtos.requests.PaymentDTO;
+import com.rakbank.busra.app.eventmgmt.clients.paymentservice.dtos.commons.PaymentDTO;
 import com.rakbank.busra.app.eventmgmt.services.PaymentBusinessService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

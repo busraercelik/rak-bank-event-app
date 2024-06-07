@@ -2,7 +2,7 @@ package com.rakbank.busra.app.eventmgmt.clients.paymentservice;
 
 import com.rakbank.busra.app.eventmgmt.common.dto.BaseAPIResponse;
 import com.rakbank.busra.app.eventmgmt.config.AppConfig;
-import com.rakbank.busra.app.eventmgmt.dtos.requests.PaymentDTO;
+import com.rakbank.busra.app.eventmgmt.clients.paymentservice.dtos.commons.PaymentDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;

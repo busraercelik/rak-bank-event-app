@@ -1,4 +1,4 @@
-package com.rakbank.busra.app.eventmgmt.clients.ticketservice.dto.response;
+package com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.responses;
 
 
 import lombok.AllArgsConstructor;

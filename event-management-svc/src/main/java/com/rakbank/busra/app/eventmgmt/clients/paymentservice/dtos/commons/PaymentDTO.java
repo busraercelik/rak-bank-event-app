@@ -1,6 +1,6 @@
-package com.rakbank.busra.app.eventmgmt.dtos.requests;
+package com.rakbank.busra.app.eventmgmt.clients.paymentservice.dtos.commons;
 
-import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dto.commons.Currency;
+import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.commons.Currency;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;

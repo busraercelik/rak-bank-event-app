@@ -1,4 +1,4 @@
-package com.rakbank.busra.app.eventmgmt.clients.ticketservice.dto.commons;
+package com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.commons;
 
 import lombok.Data;
 

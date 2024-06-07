@@ -1,6 +1,5 @@
 package com.rakbank.busra.app.eventmgmt.clients.eventservice;
 
-import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dto.response.TicketSaleDTO;
 import com.rakbank.busra.app.eventmgmt.common.dto.BaseAPIResponse;
 import com.rakbank.busra.app.eventmgmt.config.AppConfig;
 import com.rakbank.busra.app.eventmgmt.dtos.requests.EventDTO;

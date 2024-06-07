@@ -1,12 +1,12 @@
 package com.rakbank.busra.app.eventmgmt.clients.ticketservice;
 
-import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dto.commons.TicketTypeDTO;
-import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dto.request.EventTicketInventoryRequestDTO;
-import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dto.request.TicketSaleRequestDTO;
-import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dto.response.CreateTicketEventInventoryResultDTO;
-import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dto.response.EventTicketInventoryResponseDTO;
-import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dto.response.TicketSaleDTO;
-import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dto.response.TicketSaleResponseDTO;
+import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.commons.TicketTypeDTO;
+import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.requests.EventTicketInventoryRequestDTO;
+import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.requests.TicketSaleRequestDTO;
+import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.responses.CreateTicketEventInventoryResultDTO;
+import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.responses.EventTicketInventoryResponseDTO;
+import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.responses.TicketSaleDTO;
+import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.responses.TicketSaleResponseDTO;
 import com.rakbank.busra.app.eventmgmt.common.dto.BaseAPIResponse;
 import com.rakbank.busra.app.eventmgmt.config.AppConfig;
 import lombok.AllArgsConstructor;

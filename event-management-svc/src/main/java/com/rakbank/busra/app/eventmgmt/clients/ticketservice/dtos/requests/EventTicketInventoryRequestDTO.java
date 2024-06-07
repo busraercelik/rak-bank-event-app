@@ -1,4 +1,4 @@
-package com.rakbank.busra.app.eventmgmt.clients.ticketservice.dto.request;
+package com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.requests;
 
 
 import lombok.Data;

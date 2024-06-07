@@ -1,7 +1,7 @@
-package com.rakbank.busra.app.eventmgmt.clients.ticketservice.dto.request;
+package com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.requests;
 
-import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dto.commons.Currency;
-import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dto.commons.TicketStatus;
+import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.commons.Currency;
+import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.commons.TicketStatus;
 import lombok.Data;
 
 import java.math.BigDecimal;
