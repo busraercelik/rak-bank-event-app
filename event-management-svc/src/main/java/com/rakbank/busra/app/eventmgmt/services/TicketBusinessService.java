@@ -36,14 +36,18 @@ public class TicketBusinessService {
     public BookTicketBusinessResponse bookTicket(BookTicketBusinessRequest request) {
         //fetch the user - validate if it exists
         var user = userClient.getById(request.getUserId()).getResult();
+
         // fetch the event - validate if it exists
         var event = eventClient.getById(request.getEventId()).getResult();
         log.info("Booking ticket for event : {} for user : {}", event.getName(), request.getUserId());
+
         //check for valid ticket type
         var ticketType = ticketClient.getTicketType(request.getTicketTypeName()).getResult();
         var ticketBookRequest = businessRequestMapper.toTicketSaleRequestDTO(ticketType, request);
+
         //create a ticket sale record
         var ticketSaleResponse = ticketClient.createTicketSale(ticketBookRequest).getResult();
+
         //create a payment record for the ticket sale
         var paymentRequest = getPaymentDTO(request, ticketSaleResponse, ticketType);
         var paymentResponse = paymentClient.create(paymentRequest).getResult();
@@ -74,7 +78,7 @@ public class TicketBusinessService {
                 ● Number of Ticket(s) : 1
                 ● Payment Amount : %s
                 """, ticketSaleResponse.getReferenceId(), event.getName(), event.getDateFrom(),
-                "", user.getEmail(), ticketSaleResponse.getTicketTypeName(), ticketSaleResponse.getAmount()));
+                event.get, user.getEmail(), ticketSaleResponse.getTicketTypeName(), ticketSaleResponse.getAmount()));
         return notification;
     }
 

@@ -10,6 +10,7 @@ public class EventDTO {
     Long id;
     String name;
     String description;
+    String location;
     String host;
 
     String dateTo;

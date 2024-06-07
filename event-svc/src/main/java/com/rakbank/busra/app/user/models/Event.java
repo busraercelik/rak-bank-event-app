@@ -19,6 +19,7 @@ public class Event {
     Long id;
     String name;
     String description;
+    String location;
     String host;
     @JsonFormat(pattern = DATE_TIME_FORMAT)
     LocalDateTime dateFrom;

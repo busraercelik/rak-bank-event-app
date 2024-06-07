@@ -6,6 +6,7 @@ import lombok.Data;
 public class EventDTO {
     String name;
     String description;
+    String location;
     String host;
 
     String dateTo;
