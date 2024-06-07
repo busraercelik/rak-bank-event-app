@@ -3,7 +3,7 @@ package com.rakbank.busra.app.eventmgmt.services;
 import com.rakbank.busra.app.eventmgmt.clients.eventservice.EventClient;
 import com.rakbank.busra.app.eventmgmt.clients.ticketservice.TicketClient;
 import com.rakbank.busra.app.eventmgmt.common.dto.BaseAPIResponse;
-import com.rakbank.busra.app.eventmgmt.dtos.requests.EventDTO;
+import com.rakbank.busra.app.eventmgmt.clients.eventservice.dtos.commons.EventDTO;
 import com.rakbank.busra.app.eventmgmt.dtos.responses.EventResponseDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

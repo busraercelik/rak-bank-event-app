@@ -3,7 +3,7 @@ package com.rakbank.busra.app.eventmgmt.controllers;
 import java.util.List;
 
 import com.rakbank.busra.app.eventmgmt.common.dto.BaseAPIResponse;
-import com.rakbank.busra.app.eventmgmt.dtos.requests.EventDTO;
+import com.rakbank.busra.app.eventmgmt.clients.eventservice.dtos.commons.EventDTO;
 import com.rakbank.busra.app.eventmgmt.dtos.responses.EventResponseDTO;
 import com.rakbank.busra.app.eventmgmt.services.EventBusinessService;
 import lombok.AllArgsConstructor;
