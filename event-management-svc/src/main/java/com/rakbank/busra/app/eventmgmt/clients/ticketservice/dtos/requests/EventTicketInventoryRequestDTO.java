@@ -1,6 +1,7 @@
 package com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.requests;
 
 
+import com.rakbank.busra.app.eventmgmt.dtos.commons.TicketBookingCapacity;
 import lombok.Data;
 
 import java.util.List;
@@ -9,10 +10,4 @@ import java.util.List;
 public class EventTicketInventoryRequestDTO {
     Long eventId;
     List<TicketBookingCapacity> ticketBookingCapacities;
-
-    @Data
-    public static class TicketBookingCapacity{
-        String ticketTypeName;
-        int totalTickets;
-    }
 }

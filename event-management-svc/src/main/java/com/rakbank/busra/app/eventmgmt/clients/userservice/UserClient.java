@@ -2,10 +2,9 @@ package com.rakbank.busra.app.eventmgmt.clients.userservice;
 
 import com.rakbank.busra.app.eventmgmt.common.dto.BaseAPIResponse;
 import com.rakbank.busra.app.eventmgmt.config.AppConfig;
-import com.rakbank.busra.app.eventmgmt.dtos.requests.UserDTO;
+import com.rakbank.busra.app.eventmgmt.clients.userservice.dtos.commons.UserDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 

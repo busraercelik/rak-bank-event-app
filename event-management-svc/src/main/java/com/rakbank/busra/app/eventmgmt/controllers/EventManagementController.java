@@ -4,7 +4,8 @@ import java.util.List;
 
 import com.rakbank.busra.app.eventmgmt.common.dto.BaseAPIResponse;
 import com.rakbank.busra.app.eventmgmt.clients.eventservice.dtos.commons.EventDTO;
-import com.rakbank.busra.app.eventmgmt.dtos.responses.EventResponseDTO;
+import com.rakbank.busra.app.eventmgmt.dtos.requests.EventCreateBusinessRequest;
+import com.rakbank.busra.app.eventmgmt.dtos.responses.EventCreateBusinessResponse;
 import com.rakbank.busra.app.eventmgmt.services.EventBusinessService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,8 +20,8 @@ class EventManagementController {
   private final EventBusinessService eventBusinessService;
 
   @PostMapping
-  EventResponseDTO create(EventDTO eventDTO) {
-    return eventBusinessService.create(eventDTO);
+  EventCreateBusinessResponse create(EventCreateBusinessRequest request) {
+    return eventBusinessService.create(request);
   }
 
   @GetMapping("/{id}")
