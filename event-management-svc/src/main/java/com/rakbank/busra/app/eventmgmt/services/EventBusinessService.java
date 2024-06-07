@@ -3,9 +3,11 @@ package com.rakbank.busra.app.eventmgmt.services;
 import com.rakbank.busra.app.eventmgmt.clients.eventservice.EventClient;
 import com.rakbank.busra.app.eventmgmt.clients.eventservice.dtos.commons.EventDTO;
 import com.rakbank.busra.app.eventmgmt.clients.ticketservice.TicketClient;
+import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.responses.EventTicketInventoryResponseDTO;
 import com.rakbank.busra.app.eventmgmt.common.dto.BaseAPIResponse;
 import com.rakbank.busra.app.eventmgmt.dtos.requests.EventCreateBusinessRequest;
 import com.rakbank.busra.app.eventmgmt.dtos.responses.EventCreateBusinessResponse;
+import com.rakbank.busra.app.eventmgmt.dtos.responses.EventViewResponse;
 import com.rakbank.busra.app.eventmgmt.mappers.BusinessRequestMapper;
 import com.rakbank.busra.app.eventmgmt.mappers.BusinessResponseMapper;
 import lombok.AllArgsConstructor;
@@ -40,11 +42,13 @@ public class EventBusinessService {
         return eventCreateBusinessResponse;
     }
 
-    public BaseAPIResponse<EventDTO> fetch(Long id) {
-        return eventClient.getById(id);
+    public List<EventViewResponse> search(String search) {
+        var events = eventClient.search(search).getResult();
+        return events.stream().map(this::createEventView).toList();
     }
 
-    public BaseAPIResponse<List<EventDTO>> search(String search) {
-        return eventClient.search(search);
+    private EventViewResponse createEventView(EventDTO event) {
+        var result = ticketClient.getEventTicketInventoryByEventId(event.getId()).getResult();
+        return new EventViewResponse(event, result.getEventTickets());
     }
 }

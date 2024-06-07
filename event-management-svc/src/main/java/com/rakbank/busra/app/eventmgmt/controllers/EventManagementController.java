@@ -1,9 +1,9 @@
 package com.rakbank.busra.app.eventmgmt.controllers;
 
-import com.rakbank.busra.app.eventmgmt.clients.eventservice.dtos.commons.EventDTO;
 import com.rakbank.busra.app.eventmgmt.common.dto.BaseAPIResponse;
 import com.rakbank.busra.app.eventmgmt.dtos.requests.EventCreateBusinessRequest;
 import com.rakbank.busra.app.eventmgmt.dtos.responses.EventCreateBusinessResponse;
+import com.rakbank.busra.app.eventmgmt.dtos.responses.EventViewResponse;
 import com.rakbank.busra.app.eventmgmt.services.EventBusinessService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,10 +25,10 @@ class EventManagementController {
     return new BaseAPIResponse<>("200", "created a new event", result);
   }
 
-  //TODO fetch ticket event data along with event data
   @GetMapping
-  BaseAPIResponse<List<EventDTO>> search(@RequestParam("search") String search) {
-    return eventBusinessService.search(search);
+  BaseAPIResponse<List<EventViewResponse>> search(@RequestParam("search") String search) {
+    var result = eventBusinessService.search(search);
+    return new BaseAPIResponse<>("200", "fetched matching events successfully", result);
   }
 
 }
