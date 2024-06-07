@@ -26,7 +26,7 @@ class EventManagementController {
   }
 
   @GetMapping("/{id}")
-  BaseAPIResponse<EventDTO> getById(@PathVariable String id) {
+  BaseAPIResponse<EventDTO> getById(@PathVariable Long id) {
     return eventBusinessService.fetch(id);
   }
 

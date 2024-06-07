@@ -1,6 +1,8 @@
 package com.rakbank.busra.app.eventmgmt.clients.paymentservice.dtos.commons;
 
 import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.commons.Currency;
+import com.rakbank.busra.app.eventmgmt.dtos.commons.PaymentStatus;
+import com.rakbank.busra.app.eventmgmt.dtos.commons.PaymentType;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
@@ -27,11 +29,4 @@ public class PaymentDTO {
     LocalDateTime paymentCompletedTime;
     LocalDateTime paymentCancelledTime;
 
-    enum PaymentStatus {
-        PENDING, COMPLETED, FAILED, CANCELLED
-    }
-
-    enum PaymentType {
-        CREDIT_CARD, CASH, VOUCHER
-    }
 }

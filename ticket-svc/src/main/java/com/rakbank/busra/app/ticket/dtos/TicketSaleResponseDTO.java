@@ -7,4 +7,5 @@ import lombok.Data;
 public class TicketSaleResponseDTO extends TicketSaleRequestDTO{
     @Null(message = "field referenceId cannot be set")
     String referenceId;
+    Long id;
 }

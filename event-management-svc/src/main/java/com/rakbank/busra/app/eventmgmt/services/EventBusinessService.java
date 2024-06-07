@@ -38,7 +38,7 @@ public class EventBusinessService {
         return eventCreateBusinessResponse;
     }
 
-    public BaseAPIResponse<EventDTO> fetch(String id) {
+    public BaseAPIResponse<EventDTO> fetch(Long id) {
         return eventClient.getById(id);
     }
 

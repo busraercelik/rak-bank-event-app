@@ -38,4 +38,9 @@ class TicketEventInventoryController {
         return new BaseAPIResponse<>("200", "Ticket types fetched successfully.", ticketTypes);
     }
 
+    @GetMapping(path = "/type/{ticketTypeName}")
+    BaseAPIResponse<TicketType> ticketType(@PathVariable("ticketTypeName") String ticketTypeName) {
+        var ticketTypes = ticketInventoryManagementService.getTicketType(ticketTypeName);
+        return new BaseAPIResponse<>("200", "Ticket type fetched successfully.", ticketTypes);
+    }
 }

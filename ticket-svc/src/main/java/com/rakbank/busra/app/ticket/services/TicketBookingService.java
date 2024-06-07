@@ -25,12 +25,12 @@ import static com.rakbank.busra.app.ticket.errors.ErrorCode.TICKET_NOT_AVAILABLE
 @Transactional
 @AllArgsConstructor
 public class TicketBookingService {
-    private final TicketSaleRepository ticketSaleRepository;
 
+    private final TicketSaleMapper ticketSaleMapper;
+    private final TicketSaleRepository ticketSaleRepository;
     private final TicketTypeRepository ticketTypeRepository;
     private final EventTicketRepository eventTicketRepository;
     private final EventTicketInventoryRepository eventTicketInventoryRepository;
-    private final TicketSaleMapper ticketSaleMapper;
 
     public TicketSaleResponseDTO book(TicketSaleRequestDTO bookingReq) {
         //step 1 - get the ticket type
@@ -88,5 +88,13 @@ public class TicketBookingService {
 
     public TicketSale fetchTicketByReferenceId(String referenceId) {
         return ticketSaleRepository.getByReferenceIdIgnoreCase(referenceId);
+    }
+
+    //link a ticket to payment
+    public TicketSale linkPaymentId(String referenceId, Long paymentId) {
+        var ticketSale = fetchTicketByReferenceId(referenceId);
+        ticketSale.setPaymentId(paymentId);
+        ticketSaleRepository.save(ticketSale);
+        return ticketSale;
     }
 }

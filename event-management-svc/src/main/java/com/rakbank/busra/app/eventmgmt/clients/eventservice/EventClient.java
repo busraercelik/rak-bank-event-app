@@ -30,7 +30,7 @@ public class EventClient {
                 .getBody();
     }
 
-    public BaseAPIResponse<EventDTO> getById(String id) {
+    public BaseAPIResponse<EventDTO> getById(Long id) {
         return restClient.get()
                 .uri(appConfig.getEventServiceBaseUrl() + BASE_PATH+"/{id}", id)
                 .retrieve()

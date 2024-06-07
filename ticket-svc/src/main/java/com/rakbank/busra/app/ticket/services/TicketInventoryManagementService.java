@@ -69,4 +69,8 @@ public class TicketInventoryManagementService {
     public List<TicketType> getAllTicketTypes() {
         return ticketTypeRepository.findAll();
     }
+
+    public TicketType getTicketType(String ticketTypeName) {
+        return ticketTypeRepository.getByTicketTypeNameIgnoreCase(ticketTypeName);
+    }
 }

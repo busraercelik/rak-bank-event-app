@@ -24,6 +24,13 @@ class TicketBookingController {
                 String.format("Ticket booked successfully, referenceId : %s", result.getReferenceId()), result);
     }
 
+    @PutMapping("/link/{referenceId}/{paymentId}")
+    BaseAPIResponse<TicketSale> linkPayment(
+            @PathVariable("referenceId") String referenceId, @PathVariable("paymentId") Long paymentId) {
+        var result = ticketBookingService.linkPaymentId(referenceId, paymentId);
+        return new BaseAPIResponse<>("200", "Ticket linked with payment successfully", result);
+    }
+
     @GetMapping("/{referenceId}")
     BaseAPIResponse<TicketSale> fetchTicketByReferenceId(@PathVariable("referenceId") String referenceId) {
         var result = ticketBookingService.fetchTicketByReferenceId(referenceId);

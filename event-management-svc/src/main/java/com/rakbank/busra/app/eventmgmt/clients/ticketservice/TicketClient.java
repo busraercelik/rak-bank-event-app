@@ -85,4 +85,24 @@ public class TicketClient {
                 })
                 .getBody();
     }
+
+    public BaseAPIResponse<TicketTypeDTO> getTicketType(String ticketTypeName) {
+        return restClient.get()
+                .uri(appConfig.getTicketServiceBaseUrl() + TICKET_INVENTORY_BASE_URL + "/type/{ticketTypeName}", ticketTypeName)
+                .retrieve()
+                .toEntity(new ParameterizedTypeReference<BaseAPIResponse<TicketTypeDTO>>() {
+                })
+                .getBody();
+    }
+
+    public BaseAPIResponse<TicketSaleDTO> linkPaymentWithTicketSale(String referenceId, Long paymentId) {
+        return restClient.put()
+                .uri(appConfig.getTicketServiceBaseUrl()
+                                + TICKET_BOOKING_BASE_URL + "/link/{referenceId}/{paymentId}", referenceId, paymentId)
+                .retrieve()
+                .toEntity(new ParameterizedTypeReference<BaseAPIResponse<TicketSaleDTO>>() {
+                })
+                .getBody();
+    }
+
 }
