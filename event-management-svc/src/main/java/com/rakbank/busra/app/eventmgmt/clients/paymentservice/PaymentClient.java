@@ -38,7 +38,7 @@ public class PaymentClient {
     }
 
     public BaseAPIResponse<PaymentDTO> refund(Long paymentId) {
-        return restClient.delete()
+        return restClient.put()
                 .uri(appConfig.getPaymentServiceBaseUrl() + BASE_PATH + "/refund/{paymentId}", paymentId)
                 .retrieve()
                 .toEntity(new ParameterizedTypeReference<BaseAPIResponse<PaymentDTO>>() {

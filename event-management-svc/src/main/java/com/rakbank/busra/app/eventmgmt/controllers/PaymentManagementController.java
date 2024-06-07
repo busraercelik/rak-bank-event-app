@@ -16,7 +16,7 @@ class PaymentManagementController {
   private final PaymentBusinessService service;
 
   @PostMapping
-  public BaseAPIResponse<PaymentDTO> create(PaymentDTO dto) {
+  public BaseAPIResponse<PaymentDTO> complete(PaymentDTO dto) {
     return service.create(dto);
   }
 

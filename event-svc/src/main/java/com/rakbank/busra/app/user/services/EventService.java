@@ -58,6 +58,13 @@ public class EventService {
         }
     }
 
+    public Event updateWithInventoryId(Long eventId, Long eventTicketInventoryId) {
+        var event = getById(eventId);
+        event.setEventTicketInventoryId(eventTicketInventoryId);
+        eventRepository.saveAndFlush(event);
+        return event;
+    }
+
     private record EventDates(LocalDateTime toDate, LocalDateTime fromDate) {
     }
 

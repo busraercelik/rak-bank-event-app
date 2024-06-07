@@ -28,6 +28,13 @@ public class EventController {
         return new BaseAPIResponse<>("200","event fetched successfully", result);
     }
 
+    @PutMapping(path = "/link/{eventId}/{inventoryId}")
+    BaseAPIResponse<Event> updateWithInventoryId(
+            @PathVariable("eventId") Long eventId, @PathVariable("inventoryId") Long inventoryId) {
+        var result = eventService.updateWithInventoryId(eventId, inventoryId);
+        return new BaseAPIResponse<>("200","event fetched successfully", result);
+    }
+
     @GetMapping
     BaseAPIResponse<List<Event>> search(@RequestParam("search") String search) {
         var result = eventService.search(search);

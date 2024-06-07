@@ -10,5 +10,6 @@ import org.mapstruct.Mapping;
 public interface BusinessResponseMapper {
 
     @Mapping(source = "inventoryDTO.inventory.eventTickets", target = "eventTickets")
+    @Mapping(source = "inventoryDTO.inventory.id", target = "eventTicketInventoryId")
     EventCreateBusinessResponse toEventCreateBusinessResponse(EventDTO eventDTO, CreateTicketEventInventoryResultDTO inventoryDTO);
 }

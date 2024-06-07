@@ -1,8 +1,8 @@
 package com.rakbank.busra.app.eventmgmt.clients.eventservice;
 
+import com.rakbank.busra.app.eventmgmt.clients.eventservice.dtos.commons.EventDTO;
 import com.rakbank.busra.app.eventmgmt.common.dto.BaseAPIResponse;
 import com.rakbank.busra.app.eventmgmt.config.AppConfig;
-import com.rakbank.busra.app.eventmgmt.clients.eventservice.dtos.commons.EventDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
@@ -46,4 +46,15 @@ public class EventClient {
                 .getBody();
 
     }
+
+    public BaseAPIResponse<EventDTO> updateWithInventoryId(Long eventId, Long inventoryId) {
+        return restClient.put()
+                .uri(appConfig.getEventServiceBaseUrl()
+                        + BASE_PATH+"/link/{eventId}/{inventoryId}", eventId, inventoryId)
+                .contentType(APPLICATION_JSON)
+                .retrieve()
+                .toEntity(new ParameterizedTypeReference<BaseAPIResponse<EventDTO>>() {})
+                .getBody();
+    }
+
 }

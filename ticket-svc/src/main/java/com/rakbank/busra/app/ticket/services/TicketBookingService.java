@@ -3,6 +3,7 @@ package com.rakbank.busra.app.ticket.services;
 import com.rakbank.busra.app.ticket.common.exceptions.ApplicationException;
 import com.rakbank.busra.app.ticket.dtos.TicketSaleRequestDTO;
 import com.rakbank.busra.app.ticket.dtos.TicketSaleResponseDTO;
+import com.rakbank.busra.app.ticket.errors.ErrorCode;
 import com.rakbank.busra.app.ticket.mappers.TicketSaleMapper;
 import com.rakbank.busra.app.ticket.models.TicketSale;
 import com.rakbank.busra.app.ticket.models.TicketStatus;
@@ -76,6 +77,9 @@ public class TicketBookingService {
 
     public TicketSale cancel(String referenceId) {
         var ticket = ticketSaleRepository.getByReferenceIdIgnoreCase(referenceId);
+        if(ticket.getTicketStatus()==TicketStatus.CANCELLED){
+            throw new ApplicationException(String.format("Ticket %s already cancelled", referenceId), ErrorCode.TICKET_ALREADY_CANCELLED);
+        }
         ticket.setTicketStatus(TicketStatus.CANCELLED);
 
         var eventTicketRecord = eventTicketRepository.getByEventTicketInventoryByEventId(ticket.getEventId());

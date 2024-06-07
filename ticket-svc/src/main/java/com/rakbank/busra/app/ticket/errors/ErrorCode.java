@@ -11,7 +11,7 @@ public enum ErrorCode implements BaseErrorCode {
     TICKET_NOT_AVAILABLE("ERROR_TICKET_400", 400),
     TICKET_SALE_NOT_FOUND("ERROR_TICKET_500", 400),
     TICKET_EVENT_NOT_FOUND("ERROR_TICKET_600", 400),
-    ;
+    TICKET_ALREADY_CANCELLED("ERROR_TICKET_700", 400);
 
     final String code;
     final int httpStatus;

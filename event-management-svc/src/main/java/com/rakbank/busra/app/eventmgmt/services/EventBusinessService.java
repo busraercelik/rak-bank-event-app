@@ -1,9 +1,9 @@
 package com.rakbank.busra.app.eventmgmt.services;
 
 import com.rakbank.busra.app.eventmgmt.clients.eventservice.EventClient;
+import com.rakbank.busra.app.eventmgmt.clients.eventservice.dtos.commons.EventDTO;
 import com.rakbank.busra.app.eventmgmt.clients.ticketservice.TicketClient;
 import com.rakbank.busra.app.eventmgmt.common.dto.BaseAPIResponse;
-import com.rakbank.busra.app.eventmgmt.clients.eventservice.dtos.commons.EventDTO;
 import com.rakbank.busra.app.eventmgmt.dtos.requests.EventCreateBusinessRequest;
 import com.rakbank.busra.app.eventmgmt.dtos.responses.EventCreateBusinessResponse;
 import com.rakbank.busra.app.eventmgmt.mappers.BusinessRequestMapper;
@@ -33,7 +33,9 @@ public class EventBusinessService {
         var inventoryCreateRequest = businessRequestMapper.toEventTicketInventoryRequestDTO(event.getId(), request);
         //create the event inventory
         var inventory = ticketClient.createEventTicketInventory(inventoryCreateRequest).getResult();
-        var eventCreateBusinessResponse = businessResponseMapper.toEventCreateBusinessResponse(event, inventory);
+        var updatedEvent = eventClient.updateWithInventoryId(event.getId(), inventory.getInventory().getId()).getResult();
+
+        var eventCreateBusinessResponse = businessResponseMapper.toEventCreateBusinessResponse(updatedEvent, inventory);
         log.info("Finished creating a new event : {}", request);
         return eventCreateBusinessResponse;
     }
