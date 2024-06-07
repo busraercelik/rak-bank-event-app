@@ -6,5 +6,6 @@ import lombok.Data;
 @Data
 public class TicketSaleResponseDTO extends TicketSaleRequestDTO {
     Long id;
+    Long paymentId;
     String referenceId;
 }

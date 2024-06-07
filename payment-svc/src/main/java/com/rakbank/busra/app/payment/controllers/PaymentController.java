@@ -26,9 +26,9 @@ public class PaymentController {
         return new BaseAPIResponse<>("200", "Payment is updated to complete successfully", result);
     }
 
-    @DeleteMapping("/cancel/{paymentId}")
-    BaseAPIResponse<Payment> cancel(@PathVariable("paymentId") Long paymentId) {
-        var result = paymentService.cancelPayment(paymentId);
+    @PutMapping("/refund/{paymentId}")
+    BaseAPIResponse<Payment> refund(@PathVariable("paymentId") Long paymentId) {
+        var result = paymentService.refundPayment(paymentId);
         return new BaseAPIResponse<>("200", "Payment is updated to cancelled successfully", result);
     }
 }

@@ -7,7 +7,9 @@ import com.rakbank.busra.app.eventmgmt.clients.ticketservice.TicketClient;
 import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.commons.TicketTypeDTO;
 import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.responses.TicketSaleResponseDTO;
 import com.rakbank.busra.app.eventmgmt.dtos.requests.BookTicketBusinessRequest;
+import com.rakbank.busra.app.eventmgmt.dtos.requests.CancelTicketBusinessRequest;
 import com.rakbank.busra.app.eventmgmt.dtos.responses.BookTicketBusinessResponse;
+import com.rakbank.busra.app.eventmgmt.dtos.responses.CancelTicketBusinessResponse;
 import com.rakbank.busra.app.eventmgmt.mappers.BusinessRequestMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,6 +44,13 @@ public class TicketBusinessService {
                 request.getUserId(), request.getEventId(), paymentResponse.getId(), ticketSaleResponse.getReferenceId());
     }
 
+    public CancelTicketBusinessResponse cancelTicket(CancelTicketBusinessRequest request) {
+        var ticket = ticketClient.fetchTicketByReferenceId(request.getReferenceId()).getResult();
+        var cancelledTicket = ticketClient.cancelTicketSale(ticket.getReferenceId()).getResult();
+        var refundedPayment = paymentClient.refund(ticket.getPaymentId()).getResult();
+        return new CancelTicketBusinessResponse(refundedPayment, cancelledTicket);
+    }
+
     private static PaymentDTO getPaymentDTO(BookTicketBusinessRequest request, TicketSaleResponseDTO ticketSaleResponse, TicketTypeDTO ticketType) {
         var paymentRequest = new PaymentDTO();
         paymentRequest.setUserId(request.getUserId());
@@ -53,4 +62,5 @@ public class TicketBusinessService {
         paymentRequest.setPaymentType(request.getPaymentType());
         return paymentRequest;
     }
+
 }
