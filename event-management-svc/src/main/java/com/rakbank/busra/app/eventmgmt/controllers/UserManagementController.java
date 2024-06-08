@@ -16,8 +16,9 @@ class UserManagementController {
     private final UserBusinessService userBusinessService;
 
     @PostMapping
-    BaseAPIResponse<UserDTO> create(UserDTO dto) {
-        return userBusinessService.createUser(dto);
+    BaseAPIResponse<UserDTO> create(@RequestBody UserDTO dto) {
+        var result = userBusinessService.createUser(dto);
+        return new BaseAPIResponse<>("200", "User created successfully", result);
     }
 
     @GetMapping
