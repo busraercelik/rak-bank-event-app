@@ -1,6 +1,6 @@
 @echo off
 
-docker-compose down --rmi local
+docker-compose down --rmi all
 
 cd event-management-svc
 call mvnw clean package
