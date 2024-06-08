@@ -22,10 +22,14 @@
   - Cancel booking
 
   #### Notifications 
-  - Email Notification on below :-
+  - Email Notification on below events
     - creating booking
     - completing payment
     - cancelling booking
+
+#### Monitoring
+   -  http://localhost:8080/actuator/metrics
+   -  http://localhost:8080/actuator/health
 
 #### Postman collections
 You can download the Postman collection directly from the link below:
