@@ -110,7 +110,7 @@ public class TicketBusinessService {
         ticketView.setMobile(user.getPhone());
 
         ticketView.setReferenceId(ticketSale.getReferenceId());
-        ticketView.setTicketType(ticketSale.getTicketTypeName());
+        ticketView.setTicketType(ticketSale.getTicketType().getTicketTypeName());
         ticketView.setStatus(ticketSale.getTicketStatus());
 
         ticketView.setEventName(event.getName());
