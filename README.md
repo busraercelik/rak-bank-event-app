@@ -28,4 +28,6 @@
     - cancelling booking
 
 #### Postman collections
-  
+You can download the Postman collection directly from the link below:
+
+[Download Postman Collection](https://github.com/busraercelik/rak-bank-event-app/releases/download/1.1/rak-bank-coding-assignment-busra-ercelik.postman_collection.json)
