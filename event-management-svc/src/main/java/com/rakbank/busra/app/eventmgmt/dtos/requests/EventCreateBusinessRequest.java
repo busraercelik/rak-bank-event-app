@@ -10,6 +10,7 @@ public class EventCreateBusinessRequest {
 
     String name;
     String description;
+    String location;
     String host;
 
     String dateTo;
