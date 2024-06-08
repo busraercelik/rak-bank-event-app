@@ -11,11 +11,12 @@ import java.util.Optional;
 
 public interface EventTicketRepository extends JpaRepository<EventTicket, Long> {
 
-    Optional<EventTicket> findByEventTicketInventory_EventId(@NonNull Long eventId);
-    default EventTicket getByEventTicketInventoryByEventId(@NonNull Long eventId){
-        return findByEventTicketInventory_EventId(eventId)
-                .orElseThrow(()-> new ApplicationException(
-                        String.format("EventTicket for event : %s not found", eventId),
-                        ErrorCode.TICKET_EVENT_NOT_FOUND));
-    }
+  default EventTicket getEventTicket(Long eventId, Long ticketTypeId) {
+    return findByEventTicketInventory_EventIdAndTicketType_Id(eventId, ticketTypeId)
+        .orElseThrow(()-> new ApplicationException(
+            String.format("EventTicket for event : %s not found", eventId),
+            ErrorCode.TICKET_EVENT_NOT_FOUND));
+  }
+
+  Optional<EventTicket> findByEventTicketInventory_EventIdAndTicketType_Id(@NonNull Long eventId, @NonNull Long id);
 }

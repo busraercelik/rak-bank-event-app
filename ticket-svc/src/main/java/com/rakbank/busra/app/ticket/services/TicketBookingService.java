@@ -82,7 +82,7 @@ public class TicketBookingService {
         }
         ticket.setTicketStatus(TicketStatus.CANCELLED);
 
-        var eventTicketRecord = eventTicketRepository.getByEventTicketInventoryByEventId(ticket.getEventId());
+        var eventTicketRecord = eventTicketRepository.getEventTicket(ticket.getEventId(), ticket.getTicketType().getId());
         eventTicketRecord.setAvailableTickets(eventTicketRecord.getAvailableTickets()+1);
 
         ticketSaleRepository.saveAndFlush(ticket);
