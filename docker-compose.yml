@@ -8,6 +8,12 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
+    depends_on:
+      - event-svc
+      - notification-svc
+      - payment-svc
+      - ticket-svc
+      - user-svc
     environment:
       - SPRING_PROFILES_ACTIVE=dev
 
