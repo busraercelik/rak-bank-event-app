@@ -1,11 +1,13 @@
 package com.rakbank.busra.app.eventmgmt.controllers;
 
 import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.commons.TicketTypeDTO;
+import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.responses.TicketSaleResponseDTO;
 import com.rakbank.busra.app.eventmgmt.common.dto.BaseAPIResponse;
 import com.rakbank.busra.app.eventmgmt.dtos.requests.BookTicketBusinessRequest;
 import com.rakbank.busra.app.eventmgmt.dtos.requests.CancelTicketBusinessRequest;
 import com.rakbank.busra.app.eventmgmt.dtos.responses.BookTicketBusinessResponse;
 import com.rakbank.busra.app.eventmgmt.dtos.responses.CancelTicketBusinessResponse;
+import com.rakbank.busra.app.eventmgmt.dtos.responses.TicketView;
 import com.rakbank.busra.app.eventmgmt.services.TicketBusinessService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +28,12 @@ class TicketManagementController {
         return new BaseAPIResponse<>("200", "fetched all ticket types", result);
     }
 
+    @GetMapping("/{referenceId}")
+    BaseAPIResponse<TicketView> fetchTicket(@PathVariable("referenceId") String referenceId) {
+        var result = businessService.getTicketByReferenceId(referenceId);
+        return new BaseAPIResponse<>("200", "fetched ticket successfully", result);
+    }
+
     @PostMapping("/book")
     BaseAPIResponse<BookTicketBusinessResponse> bookTicket(@RequestBody BookTicketBusinessRequest request) {
         var result = businessService.bookTicket(request);
@@ -37,6 +45,5 @@ class TicketManagementController {
         var result = businessService.cancelTicket(request);
         return new BaseAPIResponse<>("200", "cancelled ticket to event", result);
     }
-
 
 }

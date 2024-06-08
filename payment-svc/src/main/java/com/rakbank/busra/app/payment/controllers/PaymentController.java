@@ -20,6 +20,12 @@ public class PaymentController {
         return new BaseAPIResponse<>("200", "Payment is created successfully", result);
     }
 
+    @GetMapping("/{paymentId}")
+    BaseAPIResponse<Payment> getPayment(@PathVariable("paymentId") Long paymentId) {
+        var result = paymentService.getById(paymentId);
+        return new BaseAPIResponse<>("200", "Payment fetched successfully", result);
+    }
+
     @PutMapping("/complete/{paymentId}")
     BaseAPIResponse<Payment> complete(@PathVariable("paymentId") Long paymentId) {
         var result = paymentService.completePayment(paymentId);
