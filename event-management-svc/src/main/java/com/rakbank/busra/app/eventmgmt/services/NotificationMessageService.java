@@ -4,6 +4,7 @@ import com.rakbank.busra.app.eventmgmt.clients.eventservice.dtos.commons.EventDT
 import com.rakbank.busra.app.eventmgmt.clients.notificationservice.dtos.commons.NotificationType;
 import com.rakbank.busra.app.eventmgmt.clients.notificationservice.dtos.commons.requests.NotificationRequestDTO;
 import com.rakbank.busra.app.eventmgmt.clients.paymentservice.dtos.commons.PaymentDTO;
+import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.responses.TicketSaleDTO;
 import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.responses.TicketSaleResponseDTO;
 import com.rakbank.busra.app.eventmgmt.clients.userservice.dtos.commons.UserDTO;
 import lombok.AllArgsConstructor;
@@ -27,11 +28,26 @@ public class NotificationMessageService {
         return request;
     }
 
+    static NotificationRequestDTO getBookingCancelledNotification(
+            UserDTO user, EventDTO event, PaymentDTO refundedPayment, TicketSaleDTO cancelledTicket) {
+        var notification = new NotificationRequestDTO();
+        notification.setNotificationType(NotificationType.EMAIL);
+        notification.setRecipient(user.getEmail());
+        notification.setSubject(String.format("Booking for event %s cancelled successfully", event.getName()));
+        notification.setMessage(String.format("""
+                Your booking for event %s on date %s is cancelled successfully
+                
+                ● Ticket ReferenceId : %s
+                ● Refund Amount : %s
+                """, event.getName(), event.getDateFrom(), cancelledTicket.getReferenceId(), refundedPayment.getAmount()));
+        return notification;
+    }
+
     static NotificationRequestDTO getBookingSuccessfulNotification(UserDTO user, EventDTO event, TicketSaleResponseDTO ticketSaleResponse) {
         var notification = new NotificationRequestDTO();
         notification.setNotificationType(NotificationType.EMAIL);
         notification.setRecipient(user.getEmail());
-        notification.setSubject(String.format("Event %s booked successfully for date %s",
+        notification.setSubject(String.format("Booking for event %s on date %s successful",
                 event.getName(), event.getDateFrom()));
         notification.setMessage(String.format("""
                 You have successfully booked a ticket - %s

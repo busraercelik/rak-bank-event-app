@@ -1,17 +1,13 @@
 package com.rakbank.busra.app.eventmgmt.services;
 
 import com.rakbank.busra.app.eventmgmt.clients.eventservice.EventClient;
-import com.rakbank.busra.app.eventmgmt.clients.eventservice.dtos.commons.EventDTO;
 import com.rakbank.busra.app.eventmgmt.clients.notificationservice.NotificationClient;
-import com.rakbank.busra.app.eventmgmt.clients.notificationservice.dtos.commons.NotificationType;
-import com.rakbank.busra.app.eventmgmt.clients.notificationservice.dtos.commons.requests.NotificationRequestDTO;
 import com.rakbank.busra.app.eventmgmt.clients.paymentservice.PaymentClient;
 import com.rakbank.busra.app.eventmgmt.clients.paymentservice.dtos.commons.PaymentDTO;
 import com.rakbank.busra.app.eventmgmt.clients.ticketservice.TicketClient;
 import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.commons.TicketTypeDTO;
 import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.responses.TicketSaleResponseDTO;
 import com.rakbank.busra.app.eventmgmt.clients.userservice.UserClient;
-import com.rakbank.busra.app.eventmgmt.clients.userservice.dtos.commons.UserDTO;
 import com.rakbank.busra.app.eventmgmt.dtos.requests.BookTicketBusinessRequest;
 import com.rakbank.busra.app.eventmgmt.dtos.requests.CancelTicketBusinessRequest;
 import com.rakbank.busra.app.eventmgmt.dtos.responses.BookTicketBusinessResponse;
@@ -21,6 +17,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import static com.rakbank.busra.app.eventmgmt.services.NotificationMessageService.getBookingCancelledNotification;
 import static com.rakbank.busra.app.eventmgmt.services.NotificationMessageService.getBookingSuccessfulNotification;
 
 @Slf4j
@@ -65,9 +62,14 @@ public class TicketBusinessService {
 
 
     public CancelTicketBusinessResponse cancelTicket(CancelTicketBusinessRequest request) {
+        var user = userClient.getById(request.getUserId()).getResult();
         var ticket = ticketClient.fetchTicketByReferenceId(request.getReferenceId()).getResult();
         var cancelledTicket = ticketClient.cancelTicketSale(ticket.getReferenceId()).getResult();
         var refundedPayment = paymentClient.refund(ticket.getPaymentId()).getResult();
+
+        var event = eventClient.getById(cancelledTicket.getEventId()).getResult();
+        var cancellationNotification = getBookingCancelledNotification(user, event, refundedPayment, cancelledTicket);
+        notificationClient.notifyUser(cancellationNotification);
         return new CancelTicketBusinessResponse(refundedPayment, cancelledTicket);
     }
 
