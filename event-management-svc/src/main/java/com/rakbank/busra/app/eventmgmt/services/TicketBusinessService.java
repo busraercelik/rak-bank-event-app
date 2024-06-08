@@ -8,6 +8,7 @@ import com.rakbank.busra.app.eventmgmt.clients.ticketservice.TicketClient;
 import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.commons.TicketTypeDTO;
 import com.rakbank.busra.app.eventmgmt.clients.ticketservice.dtos.responses.TicketSaleResponseDTO;
 import com.rakbank.busra.app.eventmgmt.clients.userservice.UserClient;
+import com.rakbank.busra.app.eventmgmt.common.dto.BaseAPIResponse;
 import com.rakbank.busra.app.eventmgmt.dtos.requests.BookTicketBusinessRequest;
 import com.rakbank.busra.app.eventmgmt.dtos.requests.CancelTicketBusinessRequest;
 import com.rakbank.busra.app.eventmgmt.dtos.responses.BookTicketBusinessResponse;
@@ -16,6 +17,8 @@ import com.rakbank.busra.app.eventmgmt.mappers.BusinessRequestMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 import static com.rakbank.busra.app.eventmgmt.services.NotificationMessageService.getBookingCancelledNotification;
 import static com.rakbank.busra.app.eventmgmt.services.NotificationMessageService.getBookingSuccessfulNotification;
@@ -88,4 +91,7 @@ public class TicketBusinessService {
         return paymentRequest;
     }
 
+    public List<TicketTypeDTO> fetchTicketTypes() {
+        return ticketClient.getAllTicketTypes().getResult();
+    }
 }
