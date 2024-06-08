@@ -14,6 +14,7 @@ public class PaymentDTO {
     Long userId;
     Long eventId;
     Long ticketSaleId;
+    String referenceId;
 
     BigDecimal amount;
     Currency currency;
