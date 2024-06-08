@@ -13,6 +13,7 @@ import com.rakbank.busra.app.eventmgmt.dtos.requests.BookTicketBusinessRequest;
 import com.rakbank.busra.app.eventmgmt.dtos.requests.CancelTicketBusinessRequest;
 import com.rakbank.busra.app.eventmgmt.dtos.responses.BookTicketBusinessResponse;
 import com.rakbank.busra.app.eventmgmt.dtos.responses.CancelTicketBusinessResponse;
+import com.rakbank.busra.app.eventmgmt.dtos.responses.TicketView;
 import com.rakbank.busra.app.eventmgmt.mappers.BusinessRequestMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -93,5 +94,34 @@ public class TicketBusinessService {
 
     public List<TicketTypeDTO> fetchTicketTypes() {
         return ticketClient.getAllTicketTypes().getResult();
+    }
+
+    public TicketView getTicketByReferenceId(String referenceId) {
+
+        var ticketSale = ticketClient.fetchTicketByReferenceId(referenceId).getResult();
+        var event = eventClient.getById(ticketSale.getEventId()).getResult();
+        var user = userClient.getById(ticketSale.getUserId()).getResult();
+        var payment = paymentClient.getById(ticketSale.getPaymentId()).getResult();
+
+
+        var ticketView = new TicketView();
+        ticketView.setName(user.getName());
+        ticketView.setEmail(user.getEmail());
+        ticketView.setMobile(user.getPhone());
+
+        ticketView.setReferenceId(ticketSale.getReferenceId());
+        ticketView.setTicketType(ticketSale.getTicketTypeName());
+        ticketView.setStatus(ticketSale.getTicketStatus());
+
+        ticketView.setEventName(event.getName());
+        ticketView.setEventLocation(event.getLocation());
+        ticketView.setEventHost(event.getHost());
+        ticketView.setEventTiming(event.getDateFrom() + " to "+ event.getDateTo());
+
+        ticketView.setAmount(payment.getAmount());
+        ticketView.setCurrency(payment.getCurrency());
+        ticketView.setPaymentStatus(payment.getPaymentStatus());
+
+        return ticketView;
     }
 }

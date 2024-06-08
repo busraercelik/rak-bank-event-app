@@ -28,6 +28,15 @@ public class PaymentClient {
                 .getBody();
     }
 
+  public BaseAPIResponse<PaymentDTO> getById(Long paymentId) {
+    return restClient.get()
+        .uri(appConfig.getPaymentServiceBaseUrl() + BASE_PATH + "/{paymentId}", paymentId)
+        .retrieve()
+        .toEntity(new ParameterizedTypeReference<BaseAPIResponse<PaymentDTO>>() {
+        })
+        .getBody();
+  }
+
     public BaseAPIResponse<PaymentDTO> complete(Long paymentId) {
         return restClient.put()
                 .uri(appConfig.getPaymentServiceBaseUrl() + BASE_PATH + "/complete/{paymentId}", paymentId)

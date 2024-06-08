@@ -40,4 +40,8 @@ public class PaymentService {
         paymentRepository.saveAndFlush(payment);
         return payment;
     }
+
+    public Payment getById(Long paymentId) {
+        return paymentRepository.getByPaymentId(paymentId);
+    }
 }
