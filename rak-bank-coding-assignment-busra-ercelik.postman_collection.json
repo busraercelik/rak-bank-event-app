@@ -1,0 +1,866 @@
+{
+	"info": {
+		"_postman_id": "59a1fe2b-4ada-42d8-b57c-aefef126c241",
+		"name": "rak-bank-coding-assignment-busra-ercelik",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1277233"
+	},
+	"item": [
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "1. fetch all ticket types",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/v1/ticket/types",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"ticket",
+								"types"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "fetch all ticket types",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/v1/ticket/types",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"ticket",
+										"types"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Jun 2024 02:11:58 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"200\",\n    \"detail\": \"fetched all ticket types\",\n    \"result\": [\n        {\n            \"id\": 1,\n            \"ticketTypeName\": \"VIP\",\n            \"amount\": 100,\n            \"currency\": \"AED\"\n        },\n        {\n            \"id\": 2,\n            \"ticketTypeName\": \"REGULAR\",\n            \"amount\": 100,\n            \"currency\": \"AED\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "2. create event",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"if(jsonData.result.id) pm.collectionVariables.set(\"eventId\", jsonData.result.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Devoxx Dubai\",\r\n    \"description\": \"Join us at the first Devoxx Dubai event to learn about the latest trends in the Java world\",\r\n    \"host\": \"Jose Paumard\",\r\n    \"dateTo\": \"2024-06-20 10:30\",\r\n    \"dateFrom\": \"2024-06-20 16:00\",\r\n    \"location\": \"world trade centre, dubai, united arab emirates\",\r\n    \"ticketBookingCapacities\": [\r\n        {\r\n            \"ticketTypeName\": \"VIP\",\r\n            \"totalTickets\": 5\r\n        },\r\n        {\r\n            \"ticketTypeName\": \"REGULAR\",\r\n            \"totalTickets\": 50\r\n        }\r\n    ]\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/event",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"event"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create event",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Devoxx Dubai\",\r\n    \"description\": \"Join us at the first Devoxx Dubai event to learn about the latest trends in the Java world\",\r\n    \"host\": \"Jose Paumard\",\r\n    \"dateTo\": \"2024-06-20 10:30\",\r\n    \"dateFrom\": \"2024-06-20 16:00\",\r\n    \"ticketBookingCapacities\": [\r\n        {\r\n            \"ticketTypeName\": \"VIP\",\r\n            \"totalTickets\": 5\r\n        },\r\n        {\r\n            \"ticketTypeName\": \"REGULAR\",\r\n            \"totalTickets\": 50\r\n        }\r\n    ]\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/v1/event",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"event"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Jun 2024 02:17:37 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"200\",\n    \"detail\": \"created a new event\",\n    \"result\": {\n        \"id\": 3,\n        \"name\": \"Devoxx Dubai\",\n        \"description\": \"Join us at the first Devoxx Dubai event to learn about the latest trends in the Java world\",\n        \"host\": \"Jose Paumard\",\n        \"dateTo\": \"2024-06-20 10:30\",\n        \"dateFrom\": \"2024-06-20 16:00\",\n        \"eventTicketInventoryId\": 3,\n        \"eventTickets\": [\n            {\n                \"id\": 3,\n                \"ticketType\": {\n                    \"id\": 1,\n                    \"ticketTypeName\": \"VIP\",\n                    \"amount\": 100,\n                    \"currency\": \"AED\"\n                },\n                \"totalTickets\": 5,\n                \"availableTickets\": 5\n            },\n            {\n                \"id\": 4,\n                \"ticketType\": {\n                    \"id\": 2,\n                    \"ticketTypeName\": \"REGULAR\",\n                    \"amount\": 100,\n                    \"currency\": \"AED\"\n                },\n                \"totalTickets\": 50,\n                \"availableTickets\": 50\n            }\n        ]\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "1. search events",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/v1/event?search=Devoxx",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"event"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "Devoxx"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. register user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"if(jsonData.result.id) pm.collectionVariables.set(\"userId\", jsonData.result.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Busra Ercelik\",\r\n  \"gender\": \"FEMALE\",\r\n  \"email\": \"bsr.ercelik@gmail.com\",\r\n  \"phone\": \"97158500000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"user"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "register user",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Busra Ercelik\",\r\n  \"gender\": \"FEMALE\",\r\n  \"email\": \"bsr.ercelik@gmail.com\",\r\n  \"phone\": \"97158500000\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/v1/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Jun 2024 03:02:11 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"200\",\n    \"detail\": \"User created successfully\",\n    \"result\": {\n        \"id\": 1,\n        \"name\": \"Busra Ercelik\",\n        \"gender\": \"FEMALE\",\n        \"email\": \"bsr.ercelik@gmail.com\",\n        \"phone\": \"97158500000\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "3. fetch user by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/v1/user?id={{userId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{userId}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "fetch user by id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/v1/user?id=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"user"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Jun 2024 03:03:17 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"200\",\n    \"detail\": \"user fetched successfully\",\n    \"result\": {\n        \"id\": 1,\n        \"name\": \"Busra Ercelik\",\n        \"gender\": \"FEMALE\",\n        \"email\": \"bsr.ercelik@gmail.com\",\n        \"phone\": \"97158500000\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "4. book ticket",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"if(jsonData.result.ticketReferenceId) \r",
+									"    pm.collectionVariables.set(\"referenceId\", jsonData.result.ticketReferenceId);\r",
+									"if(jsonData.result.paymentId)\r",
+									"    pm.collectionVariables.set(\"paymentId\", jsonData.result.paymentId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": {{userId}},\r\n  \"eventId\": {{eventId}},\r\n  \"ticketTypeName\": \"VIP\",\r\n  \"paymentType\": \"CREDIT_CARD\"\r\n}\r\n\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/ticket/book",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"ticket",
+								"book"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "book ticket",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"userId\": 1,\r\n  \"eventId\": 1,\r\n  \"ticketTypeName\": \"VIP\",\r\n  \"paymentType\": \"CREDIT_CARD\"\r\n}\r\n\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:8080/v1/ticket/book",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"ticket",
+										"book"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Jun 2024 03:03:41 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"200\",\n    \"detail\": \"booked a ticket to event\",\n    \"result\": {\n        \"userId\": 1,\n        \"eventId\": 1,\n        \"paymentId\": 1,\n        \"ticketReferenceId\": \"9a140701-a9c2-41c2-8057-fd0e1866cda2\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "5. fetch ticket",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/v1/ticket/{{referenceId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"ticket",
+								"{{referenceId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "5. fetch ticket",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/v1/ticket/{{referenceId}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"ticket",
+										"{{referenceId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Jun 2024 05:13:39 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"200\",\n    \"detail\": \"fetched ticket successfully\",\n    \"result\": {\n        \"name\": \"Busra Ercelik\",\n        \"email\": \"bsr.ercelik@gmail.com\",\n        \"mobile\": \"97158500000\",\n        \"referenceId\": \"47128a01-bf9f-447e-aa70-f4e55fdf68c4\",\n        \"ticketType\": \"VIP\",\n        \"status\": \"CREATED\",\n        \"eventName\": \"Devoxx Dubai\",\n        \"eventLocation\": \"world trade centre, dubai, united arab emirates\",\n        \"eventHost\": \"Jose Paumard\",\n        \"eventTiming\": \"2024-06-20 16:00 to 2024-06-20 10:30\",\n        \"amount\": 100,\n        \"currency\": \"AED\",\n        \"paymentStatus\": \"PENDING\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "6. complete payment",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/v1/payment/complete/{paymentId}?paymentId={{paymentId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"payment",
+								"complete",
+								"{paymentId}"
+							],
+							"query": [
+								{
+									"key": "paymentId",
+									"value": "{{paymentId}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "complete payment",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/v1/payment/complete/{paymentId}?paymentId=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"payment",
+										"complete",
+										"{paymentId}"
+									],
+									"query": [
+										{
+											"key": "paymentId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Jun 2024 03:04:23 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"200\",\n    \"detail\": \"Payment is updated to complete successfully\",\n    \"result\": {\n        \"id\": 1,\n        \"userId\": 1,\n        \"eventId\": 1,\n        \"ticketSaleId\": 1,\n        \"referenceId\": \"9a140701-a9c2-41c2-8057-fd0e1866cda2\",\n        \"amount\": 100,\n        \"currency\": \"AED\",\n        \"paymentType\": \"CREDIT_CARD\",\n        \"paymentStatus\": \"COMPLETED\",\n        \"paymentCreatedTime\": \"2024-06-08T03:03:39.758705\",\n        \"paymentCompletedTime\": \"2024-06-08T03:04:23.834546529\",\n        \"paymentRefundedTime\": null\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "7. cancel ticket",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": {{userId}},\r\n  \"referenceId\": \"{{referenceId}}\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/ticket/cancel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"ticket",
+								"cancel"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "4. cancel ticket",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"userId\": 1,\r\n  \"referenceId\": \"c0a7756f-41b3-4227-a07a-ec57de9d23b6\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/v1/ticket/cancel",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"v1",
+										"ticket",
+										"cancel"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 08 Jun 2024 03:27:17 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"200\",\n    \"detail\": \"cancelled ticket to event\",\n    \"result\": {\n        \"refundedPayment\": {\n            \"id\": 1,\n            \"userId\": 1,\n            \"eventId\": 1,\n            \"ticketSaleId\": 1,\n            \"referenceId\": \"c0a7756f-41b3-4227-a07a-ec57de9d23b6\",\n            \"amount\": 100,\n            \"currency\": \"AED\",\n            \"paymentType\": \"CREDIT_CARD\",\n            \"paymentStatus\": \"REFUNDED\",\n            \"paymentCreatedTime\": \"2024-06-08T07:26:50.124987\",\n            \"paymentCompletedTime\": \"2024-06-08T07:27:05.166833\",\n            \"paymentRefundedTime\": \"2024-06-08T07:27:17.0987302\"\n        },\n        \"cancelledTicket\": {\n            \"id\": 1,\n            \"ticketType\": {\n                \"id\": 1,\n                \"ticketTypeName\": \"VIP\",\n                \"amount\": 100,\n                \"currency\": \"AED\"\n            },\n            \"userId\": 1,\n            \"eventId\": 1,\n            \"paymentId\": 1,\n            \"amount\": 100,\n            \"currency\": \"AED\",\n            \"ticketStatus\": \"CANCELLED\",\n            \"referenceId\": \"c0a7756f-41b3-4227-a07a-ec57de9d23b6\"\n        }\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "referenceId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "paymentId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "userId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "eventId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
