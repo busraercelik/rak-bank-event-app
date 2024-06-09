@@ -1,6 +1,6 @@
 # rak-bank-event-app
 
-![rakbank.drawio.png](..%2F..%2FOneDrive%2FDesktop%2Ftemp%2Frakbank.drawio.png)
+![rakbank.drawio.png](rakbank.drawio.png)
 
 ### Run the app
 - Run the app in container 
